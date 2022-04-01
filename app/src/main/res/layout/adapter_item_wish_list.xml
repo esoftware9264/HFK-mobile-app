@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_4sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_itemWishListHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            android:layout_margin="@dimen/_2sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_itemWishListRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp">
+
+                <LinearLayout
+                    android:id="@+id/ll_productImageHolder"
+                    android:layout_width="@dimen/_95sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:background="@drawable/drawable_grey_curved_corner"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_productName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Frock 001"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
+                    app:layout_constraintTop_toTopOf="@+id/ll_productImageHolder" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_productCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="Frock"
+                    android:textColor="@color/payne_grey"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_productName" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_productQuantityLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="Quantity: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_productCategory" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_productQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="50"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_productQuantityLabel"
+                    app:layout_constraintTop_toTopOf="@+id/tv_productQuantityLabel"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_productQuantityLabel" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_deleteItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drawable_circle_smoke"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_delete"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_productPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="\u20B9 450"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

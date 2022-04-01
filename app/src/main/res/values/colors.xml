@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#31B23B</color>
+    <color name="primary_dark">#2A9132</color>
+    <color name="primary_light">#93DD99</color>
+    <color name="accent">@color/primary</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+    <color name="midnight_express">#091E42</color>
+    <color name="alice_blue">#F7FAFF</color>
+    <color name="cyan_gray">#B3BAC5</color>
+    <color name="light_slate_grey">#7A869A</color>
+    <color name="carmine">#FF0040</color>
+    <color name="kelly_green">#4CC552</color>
+    <color name="white_smoke">#F5F5F5</color>
+    <color name="dodger_blue">#1E90FF</color>
+    <color name="orange">#f26d15</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="gray_77">#C4C4C4</color>
+    <color name="gary_82">#DCD9D9</color>
+    <color name="gray_95">#F2F2F2</color>
+    <color name="gray_goose">#D1D0CE</color>
+    <color name="payne_grey">#536878</color>
+
+    <!--Navigation Drawer-->
+    <color name="DrawerItemSelectColor">#484848</color>
+    <color name="DrawerItemUnSelectColor">#484848</color>
+    <color name="DrawerSelectColor">#DEDEDE</color>
+    <color name="DrawerUnSelectColor">#FFFFFF</color>
+
+    <color name="main_cat_bg">#B9EDBE</color>
+    <color name="transparent_black_percent_45">#B93D3C3C</color>
+</resources>

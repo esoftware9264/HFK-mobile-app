@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_rateWriteReviewLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:padding="@dimen/_12sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_rateReviewLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="start"
+            android:singleLine="true"
+            android:text="@string/rate_write_review"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_rateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_medium"
+            android:gravity="start"
+            android:singleLine="true"
+            android:text="@string/rate_us"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rateReviewLabel" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/rb_itemRating"
+            style="@android:style/Widget.Material.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:progressTint="@color/primary"
+            android:stepSize="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rateLabel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_writeReviewLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_medium"
+            android:gravity="start"
+            android:singleLine="true"
+            android:text="@string/write_your_review"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rb_itemRating" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_review"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/drawable_black_curved_corner"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="start"
+            android:hint="@string/write_your_message_here"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:maxLength="50"
+            android:minHeight="@dimen/_95sdp"
+            android:padding="@dimen/_6sdp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_slate_grey"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_writeReviewLabel" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_reviewSubmit"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_32sdp"
+            android:background="@drawable/drawable_curved_solid_primary"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="@+id/et_review"
+            app:layout_constraintStart_toStartOf="@+id/et_review"
+            app:layout_constraintTop_toBottomOf="@+id/et_review" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

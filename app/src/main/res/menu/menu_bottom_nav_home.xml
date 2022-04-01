@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/bottom_nav_tractor"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="Machinery"
+        android:icon="@drawable/ic_bottom_nav_tractor"/>
+
+    <item
+        android:id="@+id/bottom_nav_seller"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="Seller"
+        android:icon="@drawable/ic_bottom_shake_hand" />
+
+    <item
+        android:id="@+id/bottom_nav_profile"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="Profile"
+        android:icon="@drawable/ic_bottom_user"/>
+
+    <item
+        android:id="@+id/bottom_nav_youtube"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="Youtube"
+        android:icon="@drawable/ic_bottom_nav_youtube"/>
+</menu>

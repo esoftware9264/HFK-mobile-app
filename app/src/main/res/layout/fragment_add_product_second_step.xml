@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_secondStepRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_16sdp"
+        tools:context=".ui.add_product.AddProductSecondStepFrag">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_selectQualityLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/select_quality"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/rg_productQualityType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_selectQualityLabel">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rb_good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_medium"
+                android:text="@string/good"
+                android:textColor="@color/midnight_express" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rb_better"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:fontFamily="@font/lato_medium"
+                android:text="@string/better"
+                android:textColor="@color/midnight_express" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rb_best"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:fontFamily="@font/lato_medium"
+                android:text="@string/best"
+                android:textColor="@color/midnight_express" />
+        </RadioGroup>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_videoLinkLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/video_link"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rg_productQualityType" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_inputVideoLink"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/drawable_layer_input_field"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="start|center_vertical"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:minHeight="@dimen/_42sdp"
+            android:padding="@dimen/_4sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/cyan_gray"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_videoLinkLabel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_sellerPriceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/select_price"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_inputVideoLink" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_inputSellerPrice"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/drawable_layer_input_field"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="start|center_vertical"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:minHeight="@dimen/_42sdp"
+            android:padding="@dimen/_4sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/cyan_gray"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sellerPriceLabel" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_continue"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_curved_solid_primary"
+            android:fontFamily="@font/lato_bold"
+            android:singleLine="true"
+            android:text="@string/continue_label"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_19ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

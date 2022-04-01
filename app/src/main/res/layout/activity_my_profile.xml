@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_myProfileRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.my_profile.MyProfileActivity">
+
+        <include
+            android:id="@+id/toolbar_common"
+            layout="@layout/toolbar_common"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_profileTopBg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_148sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_profile_top_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_common" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="@dimen/_96sdp"
+            android:layout_height="@dimen/_96sdp"
+            android:src="@drawable/ic_profile"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/_2sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profileTopBg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profileTopBg" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_profileEdit"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:src="@drawable/ic_profile_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintEnd_toEndOf="@+id/iv_profile" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_profileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="start"
+            android:text="@string/app_name"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_19ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_profileLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="start"
+            android:text="@string/app_name"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profileName" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_email"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:src="@drawable/ic_email"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/tv_profileEmail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profileLocation" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_profileEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="start"
+            android:maxLines="1"
+            android:text="hfk@gmail.com"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_15ssp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_email" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_call"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:src="@drawable/ic_call"
+            app:layout_constraintEnd_toStartOf="@+id/tv_profileCall"
+            app:layout_constraintTop_toBottomOf="@+id/iv_email" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_profileCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="start"
+            android:maxLines="1"
+            android:text="@string/app_name"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_call"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_call" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

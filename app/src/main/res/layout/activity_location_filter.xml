@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_locationFilterRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.location_filter.LocationFilterActivity">
+
+        <include
+            android:id="@+id/toolbar_common"
+            layout="@layout/toolbar_common"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_locationFilterHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_common">
+
+            <!--State List Holder-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_stateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/state"
+                android:textColor="@color/midnight_express"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RelativeLayout
+                android:id="@+id/rl_spinnerState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/drawable_layer_input_field"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_2sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_stateLabel">
+
+                <Spinner
+                    android:id="@+id/sp_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center_vertical"
+                    android:prompt="@string/select_state"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/light_slate_grey" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:src="@drawable/ic_arrow_down" />
+            </RelativeLayout>
+
+            <!--District List Holder-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_districtLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/district"
+                android:textColor="@color/midnight_express"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_spinnerState" />
+
+            <RelativeLayout
+                android:id="@+id/rl_spinnerDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/drawable_layer_input_field"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_2sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_districtLabel">
+
+                <Spinner
+                    android:id="@+id/sp_district"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center_vertical"
+                    android:prompt="@string/select_district"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/light_slate_grey" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:src="@drawable/ic_arrow_down" />
+            </RelativeLayout>
+
+            <!--Block List Holder-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_blockLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/block"
+                android:textColor="@color/midnight_express"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_spinnerDistrict" />
+
+            <RelativeLayout
+                android:id="@+id/rl_spinnerBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/drawable_layer_input_field"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_2sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_blockLabel">
+
+                <Spinner
+                    android:id="@+id/sp_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center_vertical"
+                    android:prompt="@string/select_block"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/light_slate_grey" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:src="@drawable/ic_arrow_down" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_filter"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/drawable_curved_solid_primary"
+                android:fontFamily="@font/lato_bold"
+                android:singleLine="true"
+                android:text="@string/apply"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_19ssp"
+                app:layout_constraintEnd_toEndOf="@+id/rl_spinnerBlock"
+                app:layout_constraintStart_toStartOf="@+id/rl_spinnerBlock"
+                app:layout_constraintTop_toBottomOf="@+id/rl_spinnerBlock" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

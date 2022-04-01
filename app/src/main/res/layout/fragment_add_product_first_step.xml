@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_firstStepRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_16sdp"
+        tools:context=".ui.add_product.AddProductFirstStepFrag">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_productNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/product_name"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_inputProductName"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/drawable_layer_input_field"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="start|center_vertical"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:minHeight="@dimen/_42sdp"
+            android:padding="@dimen/_4sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/cyan_gray"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_productNameLabel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_categoriesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/categories"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_inputProductName" />
+
+        <RelativeLayout
+            android:id="@+id/rl_spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/drawable_layer_input_field"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_2sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_categoriesLabel">
+
+            <Spinner
+                android:id="@+id/sp_category"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_42sdp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="center_vertical"
+                android:prompt="@string/select_state"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/light_slate_grey" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:src="@drawable/ic_arrow_down" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_categoryUnitLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/category_unit"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_spinnerCategory" />
+
+        <RelativeLayout
+            android:id="@+id/rl_spinnerCategoryUnit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/drawable_layer_input_field"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_2sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_categoryUnitLabel">
+
+            <Spinner
+                android:id="@+id/sp_categoryUnit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_42sdp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="center_vertical"
+                android:prompt="@string/select_state"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/light_slate_grey" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:src="@drawable/ic_arrow_down" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_productQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/available_quantity"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_spinnerCategoryUnit" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_inputProductQuantity"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/drawable_layer_input_field"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="start|center_vertical"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:minHeight="@dimen/_42sdp"
+            android:padding="@dimen/_4sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/cyan_gray"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_productQuantity" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_additionInfoLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/additional_info"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_inputProductQuantity" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_inputAdditionalInfo"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/drawable_layer_input_field"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="start"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:maxLength="4096"
+            android:minHeight="@dimen/_72sdp"
+            android:padding="@dimen/_4sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/cyan_gray"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_additionInfoLabel" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_continue"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_curved_solid_primary"
+            android:fontFamily="@font/lato_bold"
+            android:singleLine="true"
+            android:text="@string/continue_label"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_19ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
