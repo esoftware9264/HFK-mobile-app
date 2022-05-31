@@ -13,10 +13,7 @@ import com.esoftwere.hfk.core.HFKApplication
 import com.esoftwere.hfk.databinding.ActivityLoginBinding
 import com.esoftwere.hfk.model.login.LoginRequestModel
 import com.esoftwere.hfk.model.login.LoginResponseModel
-<<<<<<< HEAD
 import com.esoftwere.hfk.network.NetworkResult
-=======
->>>>>>> 74e78f0 (Initial Commit)
 import com.esoftwere.hfk.network.ResultWrapper
 import com.esoftwere.hfk.ui.dialog.CustomLoaderDialog
 import com.esoftwere.hfk.ui.home.HomeActivity
@@ -30,10 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var mContext: Context
     private lateinit var mCustomLoaderDialog: CustomLoaderDialog
     private lateinit var mLoginViewModel: LoginViewModel
-<<<<<<< HEAD
     private lateinit var mLoginViewModelFlow: LoginViewModelFlow
-=======
->>>>>>> 74e78f0 (Initial Commit)
 
     private val TAG = "LoginActivity"
 
@@ -80,14 +74,9 @@ class LoginActivity : AppCompatActivity() {
         mLoginViewModel = ViewModelProvider(
             this, LoginViewModelFactory(this.applicationContext as HFKApplication)
         ).get<LoginViewModel>(LoginViewModel::class.java)
-
-<<<<<<< HEAD
         mLoginViewModelFlow = ViewModelProvider(
             this, LoginViewModelFlowFactory(this.applicationContext as HFKApplication)
         ).get<LoginViewModelFlow>(LoginViewModelFlow::class.java)
-
-=======
->>>>>>> 74e78f0 (Initial Commit)
         mLoginViewModel.mLoginLiveData?.observe(
             this@LoginActivity,
             Observer<ResultWrapper<LoginResponseModel>> { result ->
@@ -143,7 +132,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             })
-<<<<<<< HEAD
 
         mLoginViewModelFlow.mLoginLiveData?.observe(
             this@LoginActivity,
@@ -202,8 +190,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             })
-=======
->>>>>>> 74e78f0 (Initial Commit)
     }
 
     private fun showLoader() {
@@ -260,11 +246,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun callLoginProcedure() {
         if (isLoginFormValidated()) {
-<<<<<<< HEAD
             callLoginAPIFlow()
-=======
-            callLoginAPI()
->>>>>>> 74e78f0 (Initial Commit)
         }
     }
 
@@ -324,7 +306,6 @@ class LoginActivity : AppCompatActivity() {
         )
     }
 
-<<<<<<< HEAD
     private fun callLoginAPIFlow() {
         if (AndroidUtility.isNetworkAvailable(mContext).not()) {
             AndroidUtility.showErrorCustomSnackbar(
@@ -344,8 +325,6 @@ class LoginActivity : AppCompatActivity() {
         )
     }
 
-=======
->>>>>>> 74e78f0 (Initial Commit)
     companion object {
         const val RB_SELECTED_BUYER = "BYR"
         const val RB_SELECTED_SELLER = "SLR"

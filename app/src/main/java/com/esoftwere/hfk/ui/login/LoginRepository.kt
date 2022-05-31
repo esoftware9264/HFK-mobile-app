@@ -16,12 +16,7 @@ class LoginRepository(val mContext: Context) {
     private var hfkServiceAPI: HFKServiceAPI? = null
     private var mLoginMutableLiveData: MutableLiveData<ResultWrapper<LoginResponseModel>>? =
         null
-
-<<<<<<< HEAD
     private val TAG: String = "LoginRepository"
-=======
-    private val TAG: String = "RegisterRepository"
->>>>>>> 74e78f0 (Initial Commit)
 
     init {
         hfkServiceAPI = HFKAPIClient.hfkServiceAPI
