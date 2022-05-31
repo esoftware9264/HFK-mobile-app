@@ -52,6 +52,7 @@ import com.esoftwere.hfk.model.wish_list.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface HFKServiceAPI {
@@ -99,6 +100,12 @@ interface HFKServiceAPI {
      */
     @POST(AppConstants.REQUEST_TYPE_LOGIN)
     fun loginAPI(@Body loginRequestModel: LoginRequestModel): Call<LoginResponseModel>
+
+    /**
+     * Login API
+     */
+    @POST(AppConstants.REQUEST_TYPE_LOGIN)
+    suspend fun loginAPIFlow(@Body loginRequestModel: LoginRequestModel): Response<LoginResponseModel>
 
     /**
      * Dashboard API

@@ -19,8 +19,8 @@ import okhttp3.RequestBody
 class CommonViewModel(private val mApplication: HFKApplication) :
     AndroidViewModel(mApplication) {
     private var mCommonRepository: CommonRepository? = null
-    var mImageUploadLiveData: MutableLiveData<ResultWrapper<FileUploadResponseModel>>? = null
-    var mVideoUploadLiveData: MutableLiveData<ResultWrapper<VideoUploadResponseModel>>? = null
+    var mImageUploadLiveData: LiveData<ResultWrapper<FileUploadResponseModel>>? = null
+    var mVideoUploadLiveData: LiveData<ResultWrapper<VideoUploadResponseModel>>? = null
     var mCountryListLiveData: LiveData<ResultWrapper<CountryListResponseModel>>? = null
     var mStateListLiveData: LiveData<ResultWrapper<StateListResponseModel>>? = null
     var mDistrictListLiveData: LiveData<ResultWrapper<DistrictListResponseModel>>? = null

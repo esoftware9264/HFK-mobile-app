@@ -13,6 +13,7 @@ import com.esoftwere.hfk.core.HFKApplication
 import com.esoftwere.hfk.databinding.ActivityLoginBinding
 import com.esoftwere.hfk.model.login.LoginRequestModel
 import com.esoftwere.hfk.model.login.LoginResponseModel
+import com.esoftwere.hfk.network.NetworkResult
 import com.esoftwere.hfk.network.ResultWrapper
 import com.esoftwere.hfk.ui.dialog.CustomLoaderDialog
 import com.esoftwere.hfk.ui.home.HomeActivity
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var mContext: Context
     private lateinit var mCustomLoaderDialog: CustomLoaderDialog
     private lateinit var mLoginViewModel: LoginViewModel
+    private lateinit var mLoginViewModelFlow: LoginViewModelFlow
 
     private val TAG = "LoginActivity"
 
@@ -72,6 +74,10 @@ class LoginActivity : AppCompatActivity() {
         mLoginViewModel = ViewModelProvider(
             this, LoginViewModelFactory(this.applicationContext as HFKApplication)
         ).get<LoginViewModel>(LoginViewModel::class.java)
+
+        mLoginViewModelFlow = ViewModelProvider(
+            this, LoginViewModelFlowFactory(this.applicationContext as HFKApplication)
+        ).get<LoginViewModelFlow>(LoginViewModelFlow::class.java)
 
         mLoginViewModel.mLoginLiveData?.observe(
             this@LoginActivity,
@@ -124,6 +130,64 @@ class LoginActivity : AppCompatActivity() {
                         AndroidUtility.showErrorCustomSnackbar(
                             binding.llLoginRoot,
                             result.error
+                        )
+                    }
+                }
+            })
+
+        mLoginViewModelFlow.mLoginLiveData?.observe(
+            this@LoginActivity,
+            Observer<NetworkResult<LoginResponseModel>> { result ->
+                when (result) {
+                    is NetworkResult.Loading -> {
+                        this@LoginActivity.showLoader()
+                    }
+
+                    is NetworkResult.Success -> {
+                        this@LoginActivity.hideLoader()
+
+                        result.data?.let { loginResponse ->
+                            if (loginResponse.success) {
+                                AndroidUtility.printModelDataWithGSON(TAG, loginResponse)
+
+                                val isMobileNoVerified: Boolean = loginResponse.userDataModel.isMobileNoVerified
+                                val userMobileNo: String = ValidationHelper.optionalBlankText(loginResponse.userDataModel.mobile)
+                                if (isMobileNoVerified) {
+                                    AndroidUtility.showSuccessCustomToast(
+                                        mContext,
+                                        loginResponse.message
+                                    )
+
+                                    HFKApplication.applicationInstance.tinyDB.apply {
+                                        writeBoolean(AppConstants.KEY_PREFS_USER_IS_LOGGED_IN, true)
+                                        writeString(
+                                            AppConstants.KEY_PREFS_USER_ID,
+                                            ValidationHelper.optionalBlankText(loginResponse.userDataModel?.userId)
+                                        )
+                                        writeCustomDataObjects(
+                                            AppConstants.KEY_PREFS_USER_DETAILS,
+                                            loginResponse.userDataModel
+                                        )
+                                    }
+                                    moveToHomeActivity()
+                                } else {
+                                    moveToVerifyOtpActivity(userMobileNo)
+                                }
+                            } else {
+                                AndroidUtility.showErrorCustomSnackbar(
+                                    binding.llLoginRoot,
+                                    loginResponse.message
+                                )
+                            }
+                        }
+                    }
+
+                    is NetworkResult.Error -> {
+                        this@LoginActivity.hideLoader()
+
+                        AndroidUtility.showErrorCustomSnackbar(
+                            binding.llLoginRoot,
+                            result.message
                         )
                     }
                 }
@@ -184,7 +248,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun callLoginProcedure() {
         if (isLoginFormValidated()) {
-            callLoginAPI()
+            callLoginAPIFlow()
         }
     }
 
@@ -236,6 +300,25 @@ class LoginActivity : AppCompatActivity() {
 
         showLoader()
         mLoginViewModel.callLoginAPI(
+            LoginRequestModel(
+                mobile = mMobileNo,
+                password = mPassword,
+                userType = mSelectedRadioButton,
+            )
+        )
+    }
+
+    private fun callLoginAPIFlow() {
+        if (AndroidUtility.isNetworkAvailable(mContext).not()) {
+            AndroidUtility.showErrorCustomSnackbar(
+                binding.llLoginRoot,
+                getString(R.string.please_check_internet)
+            )
+            return
+        }
+
+        showLoader()
+        mLoginViewModelFlow.callLoginAPI(
             LoginRequestModel(
                 mobile = mMobileNo,
                 password = mPassword,
