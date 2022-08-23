@@ -1,5 +1,6 @@
 package com.esoftwere.hfk.ui.market_view
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.esoftwere.hfk.core.HFKApplication
 import com.esoftwere.hfk.model.add_product.CategoryListResponseModel
@@ -17,13 +18,25 @@ class MarketViewModel(private val mApplication: HFKApplication) :
     private var mMarketViewRepository: MarketViewRepository? = null
     var mMarketViewLiveData: LiveData<ResultWrapper<MarketViewResponseModel>>? = null
 
+    private val TAG: String = "MarketViewModel"
+
     init {
         mMarketViewRepository = MarketViewRepository(mApplication)
         mMarketViewLiveData = mMarketViewRepository?.getMarketViewResponseData()
     }
 
-    fun callMarketViewAPI(marketViewRequestModel: MarketViewRequestModel) {
-        mMarketViewRepository?.callMarketViewAPI(marketViewRequestModel)
+    fun callMarketViewAPI(
+        mainCategoryId: String?,
+        categoryId: String?,
+        stateId: String?
+    ) {
+        Log.e(TAG, "MainCategoryId: $mainCategoryId, CategoryId: $categoryId, StateId: $stateId")
+
+        mMarketViewRepository?.callMarketViewAPI(
+            mainCategoryId = mainCategoryId,
+            categoryId = categoryId,
+            stateId = stateId
+        )
     }
 }
 

@@ -26,6 +26,10 @@ data class RegisterRequestModel(
     val district: String,
     @field:SerializedName("block_id")
     val block: String,
+    @field:SerializedName("village")
+    val village: String,
+    @field:SerializedName("landmark")
+    val landmark: String,
     @field:SerializedName("pin_code")
     val pinCode: String,
     @field:SerializedName("device_id")

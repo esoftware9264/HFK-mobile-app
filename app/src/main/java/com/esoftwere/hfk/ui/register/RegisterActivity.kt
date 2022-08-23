@@ -51,6 +51,7 @@ class RegisterActivity : AppCompatActivity() {
     private var mSelectedRadioButton: String = ""
     private var mFirstName: String = ""
     private var mLastName: String = ""
+    private var mMobileDialCode: String = ""
     private var mMobileNo: String = ""
     private var mEmail: String = ""
     private var mPassword: String = ""
@@ -59,6 +60,8 @@ class RegisterActivity : AppCompatActivity() {
     private var mSelectedStateId: String = ""
     private var mSelectedDistrictId: String = ""
     private var mSelectedBlockId: String = ""
+    private var mVillage: String = ""
+    private var mLandmark: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +136,7 @@ class RegisterActivity : AppCompatActivity() {
                                         CountryModel(
                                             countryId = "0",
                                             countryName = getString(R.string.select_country),
+                                            countryCode = "",
                                             activeFlag = "1"
                                         )
                                     )
@@ -154,11 +158,18 @@ class RegisterActivity : AppCompatActivity() {
                                             ) {
                                                 val countryModel =
                                                     countryListResponse.countryList[position]
-                                                if (countryModel.countryId.equals("0", true).not()) {
+                                                if (countryModel.countryId.equals("0", true)
+                                                        .not()
+                                                ) {
                                                     mSelectedCountryId =
                                                         ValidationHelper.optionalBlankText(
                                                             countryModel.countryId
                                                         )
+                                                    mMobileDialCode =
+                                                        ValidationHelper.optionalBlankText(
+                                                            countryModel.countryCode
+                                                        )
+                                                    binding.tvInputDialCode.text = mMobileDialCode
 
                                                     callStateListPI()
                                                 }
@@ -476,6 +487,8 @@ class RegisterActivity : AppCompatActivity() {
         mEmail = ValidationHelper.optionalBlankText(binding.etInputEmail.text.toString())
         mPassword = ValidationHelper.optionalBlankText(binding.etInputPassword.text.toString())
         mPinCode = ValidationHelper.optionalBlankText(binding.etInputPinCode.text.toString())
+        mVillage = ValidationHelper.optionalBlankText(binding.etInputVillage.text.toString())
+        mLandmark = ValidationHelper.optionalBlankText(binding.etInputLandmark.text.toString())
 
         when {
             mSelectedRadioButton.isEmpty() -> {
@@ -542,6 +555,20 @@ class RegisterActivity : AppCompatActivity() {
                 return false
             }
             mSelectedBlockId.isEmpty() -> {
+                AndroidUtility.showErrorCustomSnackbar(
+                    binding.llRegisterRoot,
+                    getString(R.string.empty_field_validation)
+                )
+                return false
+            }
+            mVillage.isEmpty() -> {
+                AndroidUtility.showErrorCustomSnackbar(
+                    binding.llRegisterRoot,
+                    getString(R.string.empty_field_validation)
+                )
+                return false
+            }
+            mLandmark.isEmpty() -> {
                 AndroidUtility.showErrorCustomSnackbar(
                     binding.llRegisterRoot,
                     getString(R.string.empty_field_validation)
@@ -666,7 +693,7 @@ class RegisterActivity : AppCompatActivity() {
             RegisterRequestModel(
                 firstName = mFirstName,
                 lastName = mLastName,
-                mobile = mMobileNo,
+                mobile = "$mMobileDialCode-$mMobileNo",
                 email = mEmail,
                 password = mPassword,
                 userType = mSelectedRadioButton,
@@ -674,6 +701,8 @@ class RegisterActivity : AppCompatActivity() {
                 state = mSelectedStateId,
                 district = mSelectedDistrictId,
                 block = mSelectedBlockId,
+                village = mVillage,
+                landmark = mLandmark,
                 pinCode = mPinCode,
                 deviceId = AndroidUtility.getAndroidDeviceId(mContext)
             )

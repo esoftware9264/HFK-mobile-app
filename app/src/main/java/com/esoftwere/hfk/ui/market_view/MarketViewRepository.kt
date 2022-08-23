@@ -35,11 +35,18 @@ class MarketViewRepository(val mContext: Context) {
         mMarketViewMutableLiveData = MutableLiveData()
     }
 
-    fun callMarketViewAPI(marketViewRequestModel: MarketViewRequestModel) {
+    fun callMarketViewAPI(
+        mainCategoryId: String?,
+        categoryId: String?,
+        stateId: String?
+    ) {
         mMarketViewMutableLiveData?.value = ResultWrapper.loading(true)
-        AndroidUtility.printModelDataWithGSON(TAG, marketViewRequestModel)
 
-        hfkServiceAPI?.getMarketViewAPI(marketViewRequestModel)
+        hfkServiceAPI?.getMarketViewAPI(
+            mainCategoryId = mainCategoryId,
+            categoryId = categoryId,
+            stateId = stateId
+        )
             ?.enqueue(object : Callback<MarketViewResponseModel> {
                 override fun onResponse(
                     call: Call<MarketViewResponseModel>,
@@ -60,8 +67,8 @@ class MarketViewRepository(val mContext: Context) {
                                 )
                             } else {
                                 mMarketViewMutableLiveData?.postValue(
-                                    ResultWrapper.failure(
-                                        marketViewResponse.message
+                                    ResultWrapper.success(
+                                        marketViewResponse
                                     )
                                 )
                             }

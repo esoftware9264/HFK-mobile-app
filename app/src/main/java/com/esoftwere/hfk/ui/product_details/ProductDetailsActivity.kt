@@ -17,10 +17,6 @@ import com.esoftwere.hfk.core.AppConstants
 import com.esoftwere.hfk.core.HFKApplication
 import com.esoftwere.hfk.databinding.ActivityProductDetailsBinding
 import com.esoftwere.hfk.databinding.BottomProductRatingViewBinding
-import com.esoftwere.hfk.model.product_details.ProductDetailsModel
-import com.esoftwere.hfk.model.product_details.ProductDetailsRequestModel
-import com.esoftwere.hfk.model.product_details.ProductDetailsResponseModel
-import com.esoftwere.hfk.model.product_details.UserDetailsModel
 import com.esoftwere.hfk.model.product_rating.ProductRatingRequestModel
 import com.esoftwere.hfk.model.product_rating.ProductRatingResponseModel
 import com.esoftwere.hfk.model.send_push_notification.SendPushNotificationRequestModel
@@ -50,9 +46,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.esoftwere.hfk.callbacks.RelatedProductItemClickListener
+import com.esoftwere.hfk.model.product_details.*
 import com.esoftwere.hfk.model.product_review.ProductReviewRequestModel
 import com.esoftwere.hfk.model.product_review.ProductReviewResponseModel
 import com.esoftwere.hfk.ui.product_details.adapter.ProductItemReviewAdapter
+import com.esoftwere.hfk.ui.product_details.adapter.RelatedProductItemAdapter
 
 
 class ProductDetailsActivity : AppCompatActivity() {
@@ -62,6 +61,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var mProductDetailsViewModel: ProductDetailsViewModel
     private lateinit var mWishListViewModel: WishListViewModel
     private lateinit var mProductDetailsItemBannerAdapter: ProductDetailsItemBannerAdapter
+    private lateinit var mRelatedProductItemAdapter: RelatedProductItemAdapter
     private lateinit var mProductReviewAdapter: ProductItemReviewAdapter
 
     private val TAG: String = "ProductDetailsAct"
@@ -70,6 +70,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     private var mSellerId: String = ""
     private var mIsRating: Int = 0
     private var mProductVideoLink: String = ""
+    private var mSellerMobileNo: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,6 +82,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         initViewModel()
 
         initProductDetailsBannerAdapter()
+        initRelatedProductItemAdapter()
         initProductItemReviewAdapter()
         callProductDetailsAPI()
     }
@@ -128,6 +130,11 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.tvViewSellerProfile.setOnClickListener {
             viewSellerProfileClickHandler()
         }
+        binding.ivSellerPhone.setOnClickListener {
+            if (mSellerMobileNo.isNotEmpty()) {
+                openDialer(mSellerMobileNo)
+            }
+        }
         binding.rbProductRating.setOnTouchListener(View.OnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 productRatingClickHandler()
@@ -146,6 +153,22 @@ class ProductDetailsActivity : AppCompatActivity() {
             autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
             startAutoCycle()
         }
+    }
+
+    private fun initRelatedProductItemAdapter() {
+        mRelatedProductItemAdapter = RelatedProductItemAdapter(mContext, object : RelatedProductItemClickListener {
+            override fun onRelatedProductItemClicked(relatedProductItemModel: RelatedProductItemModel) {
+                val productId = ValidationHelper.optionalBlankText(relatedProductItemModel.itemId)
+                if (productId.isNotEmpty()) {
+                    moveToProductDetailsActivity(relatedProductItemModel.itemId)
+                }
+            }
+        })
+        val linearLayoutManager =
+            LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false)
+        binding.rvRelatedProducts.layoutManager = linearLayoutManager
+        binding.rvRelatedProducts.itemAnimator = DefaultItemAnimator()
+        binding.rvRelatedProducts.adapter = mRelatedProductItemAdapter
     }
 
     private fun initProductItemReviewAdapter() {
@@ -374,10 +397,25 @@ class ProductDetailsActivity : AppCompatActivity() {
                 mProductVideoLink = productVideoLink
                 binding.ivProductVideoLink.visibility = View.VISIBLE
             }
+            if (getProductType().isNotEmpty() && getProductType().equals(AppConstants.ITEM_TYPE_MACHINERY, true)) {
+                binding.grpProductAge.visibility = View.VISIBLE
+                binding.tvProductAge.text = "${productDetails.machineryYears} Years ${productDetails.machineryMonths} Months"
+                binding.tvProductNoOfOwners.text = "${productDetails.numberOfOwners}"
+            }
             binding.tvProductName.text = productName
             binding.tvDescription.text = productDescription
             binding.tvProductUploadedDate.text = productCreatedAt
             binding.tvLocation.text  = productLocation
+            binding.tvProductViewCount.text = "${productDetails.productViewCount}"
+            binding.tvProductDistance.text = ValidationHelper.optionalBlankText(productDetails.productDistance)
+        }
+        productDetailsResponse.relatedProductList?.let { relatedItemProductList ->
+            if (relatedItemProductList.isNotEmpty()) {
+                if (this::mRelatedProductItemAdapter.isInitialized) {
+                    binding.grpRelatedProducts.visibility = View.VISIBLE
+                    mRelatedProductItemAdapter.setRelatedProductList(relatedItemProductList)
+                }
+            }
         }
         userDetailsModel?.let { userDetails ->
             /*val sellerImage = ValidationHelper.optionalBlankText(userDetails.userImage)*/
@@ -385,6 +423,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             val sellerFName = ValidationHelper.optionalBlankText(userDetails.firstName)
             val sellerLName = ValidationHelper.optionalBlankText(userDetails.lastName)
             val sellerMobileNo = ValidationHelper.optionalBlankText(userDetails.mobile)
+            mSellerMobileNo = sellerMobileNo
 
             binding.tvSellerName.text = "$sellerFName $sellerLName"
             binding.tvSellerMobile.text = sellerMobileNo
@@ -400,7 +439,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
             binding.tvSellerMobile.setOnClickListener {
                 if (sellerMobileNo.isNotEmpty()) {
-                    openDialer(sellerMobileNo)
+                    //openDialer(sellerMobileNo)
                 }
             }
         }
@@ -486,6 +525,12 @@ class ProductDetailsActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
     }
 
+    private fun moveToProductDetailsActivity(productId: String) {
+        val intent = Intent(this, ProductDetailsActivity::class.java)
+        intent.putExtra(AppConstants.INTENT_KEY_PRODUCT_ID, productId)
+        startActivity(intent)
+    }
+
     /**
      * Click Handler
      */
@@ -537,6 +582,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             ProductDetailsRequestModel(
                 productId = getProductId(),
                 productType = getProductType(),
+                userStateId = AndroidUtility.getUserStateId(),
                 userMstId = AndroidUtility.getUserId()
             )
         )

@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.esoftwere.hfk.callbacks.MultiImageItemClickListener
 import com.esoftwere.hfk.databinding.AdapterItemMultiImageBinding
 import com.esoftwere.hfk.utils.loadImageFromUrl
 
 class MultiImageAddProductAdapter(
-    private val mContext: Context
+    private val mContext: Context,
+    private val mMultiImageItemClickListener: MultiImageItemClickListener
 ) :
     RecyclerView.Adapter<MultiImageAddProductAdapter.MultiImageViewHolder>() {
     private var mMultiImageItemList: ArrayList<String> = arrayListOf()
@@ -46,6 +48,9 @@ class MultiImageAddProductAdapter(
         fun onBind(imageUrl: String) {
             if (imageUrl.isNotEmpty()) {
                 binding.ivItemMultiImage.loadImageFromUrl(imageUrl)
+            }
+            binding.ivRemove.setOnClickListener {
+                mMultiImageItemClickListener.onImageItemClick(imageUrl)
             }
         }
     }

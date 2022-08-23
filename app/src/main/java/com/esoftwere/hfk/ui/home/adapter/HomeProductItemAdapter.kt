@@ -80,6 +80,8 @@ class HomeProductItemAdapter(
                 binding.rbItemRating.rating = itemRating.toFloat()
             }
             binding.tvProductName.text = ValidationHelper.optionalBlankText(homeProductItemModel.itemName)
+            binding.tvProductViewCount.text = "${homeProductItemModel.productViewCount}"
+            binding.tvProductDistance.text = "${homeProductItemModel.productDistanceCalculate}"
 
             binding.clHomeProductItemRoot.setOnClickListener {
                 mHomeProductItemClickListener.onHomeProductItemClicked(homeProductItemModel)

@@ -30,8 +30,8 @@
                     android:id="@+id/iv_itemProduct"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/ic_placeholder" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -87,6 +87,40 @@
             app:layout_constraintTop_toBottomOf="@+id/rb_itemRating" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_productViewCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:drawableStart="@drawable/ic_product_view"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/payne_grey"
+            android:textSize="@dimen/_11ssp"
+            app:drawableTint="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_productLocation" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_productDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:drawableStart="@drawable/ic_marker_location_pin"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/payne_grey"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_productViewCount"
+            app:layout_constraintStart_toEndOf="@+id/tv_productViewCount" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_productPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,7 +132,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_15ssp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_productLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_productViewCount" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_productPriceUnit"
@@ -120,11 +154,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:fontFamily="@font/lato_regular"
+            android:fontFamily="@font/lato_bold"
             android:gravity="start"
             android:text="Avl. Qty: "
             android:textColor="@color/black"
-            android:textSize="@dimen/_9ssp"
+            android:textSize="@dimen/_13ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_productPrice" />
 
@@ -133,25 +167,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
-            android:fontFamily="@font/lato_bold"
+            android:fontFamily="@font/lato_regular"
             android:gravity="start"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_availableQuantityLabel"
             app:layout_constraintStart_toEndOf="@+id/tv_availableQuantityLabel"
-            app:layout_constraintTop_toTopOf="@+id/tv_availableQuantityLabel"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_availableQuantityLabel"/>
+            app:layout_constraintTop_toTopOf="@+id/tv_availableQuantityLabel" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_productQuantityUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_2sdp"
-            android:fontFamily="@font/lato_bold"
+            android:fontFamily="@font/lato_regular"
             android:gravity="start"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_9ssp"
             app:layout_constraintStart_toEndOf="@+id/tv_availableQuantity"
             app:layout_constraintTop_toTopOf="@+id/tv_availableQuantity" />
 
@@ -160,7 +194,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="tv_availableQuantityLabel, tv_availableQuantity, tv_productQuantityUnit"/>
+            app:constraint_referenced_ids="tv_availableQuantityLabel, tv_availableQuantity, tv_productQuantityUnit" />
 
         <androidx.appcompat.widget.AppCompatRatingBar
             android:id="@+id/rb_itemRating"

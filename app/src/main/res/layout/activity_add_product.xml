@@ -101,7 +101,7 @@
                             <Spinner
                                 android:id="@+id/sp_mainCategory"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_42sdp"
+                                android:layout_height="@dimen/_52sdp"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/lato_regular"
                                 android:gravity="center_vertical"
@@ -158,7 +158,7 @@
                             <Spinner
                                 android:id="@+id/sp_category"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_42sdp"
+                                android:layout_height="@dimen/_52sdp"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/lato_regular"
                                 android:gravity="center_vertical"
@@ -212,6 +212,7 @@
                             android:inputType="text"
                             android:minHeight="@dimen/_42sdp"
                             android:padding="@dimen/_4sdp"
+                            android:maxLength="25"
                             android:textColor="@color/black"
                             android:textColorHint="@color/cyan_gray"
                             android:textSize="@dimen/_15ssp"
@@ -266,7 +267,8 @@
                                 android:fontFamily="@font/lato_regular"
                                 android:gravity="start|center_vertical"
                                 android:imeOptions="actionNext"
-                                android:inputType="text"
+                                android:inputType="numberDecimal"
+                                android:digits="0123456789"
                                 android:padding="@dimen/_4sdp"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/cyan_gray"
@@ -354,7 +356,8 @@
                                 android:fontFamily="@font/lato_regular"
                                 android:gravity="start|center_vertical"
                                 android:imeOptions="actionNext"
-                                android:inputType="text"
+                                android:inputType="numberDecimal"
+                                android:digits="0123456789"
                                 android:padding="@dimen/_4sdp"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/cyan_gray"
@@ -475,10 +478,11 @@
                             android:layout_marginTop="@dimen/_4sdp"
                             android:background="@drawable/drawable_layer_input_field"
                             android:fontFamily="@font/lato_regular"
-                            android:gravity="start|center_vertical"
+                            android:gravity="start"
                             android:imeOptions="actionNext"
-                            android:inputType="text"
-                            android:minHeight="@dimen/_42sdp"
+                            android:inputType="textMultiLine"
+                            android:minHeight="@dimen/_64sdp"
+                            android:maxLines="3"
                             android:padding="@dimen/_4sdp"
                             android:textColor="@color/black"
                             android:textColorHint="@color/cyan_gray"
@@ -608,8 +612,32 @@
                                 android:gravity="center_vertical"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/tv_fileBrowseVideoLabel"
+                                app:layout_constraintEnd_toStartOf="@+id/tv_fileBrowseVideoDeleteLabel"
                                 app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_fileBrowseVideoDeleteLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/_4sdp"
+                                android:layout_marginEnd="@dimen/_4sdp"
+                                android:background="@drawable/drawable_red_curved_corner"
+                                android:fontFamily="@font/lato_regular"
+                                android:paddingStart="@dimen/_12sdp"
+                                android:paddingTop="@dimen/_6sdp"
+                                android:paddingEnd="@dimen/_12sdp"
+                                android:paddingBottom="@dimen/_6sdp"
+                                android:text="@string/delete"
+                                android:textColor="@color/carmine"
+                                android:textSize="@dimen/_11ssp"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/tv_fileBrowseVideoLabel"
+                                app:layout_constraintStart_toEndOf="@+id/tv_uploadVideo"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -1080,6 +1108,50 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tv_pinCodeLabel" />
 
+                            <!--Landmark-->
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_landmarkLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_12sdp"
+                                android:fontFamily="@font/lato_regular"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="@string/landmark"
+                                android:textColor="@color/midnight_express"
+                                android:textSize="@dimen/_11ssp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/et_inputPinCode" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_landmarkMandatory"
+                                android:layout_width="@dimen/_6sdp"
+                                android:layout_height="@dimen/_6sdp"
+                                android:layout_marginStart="@dimen/_6sdp"
+                                android:src="@drawable/ic_asterisk"
+                                android:visibility="gone"
+                                app:layout_constraintStart_toEndOf="@+id/tv_landmarkLabel"
+                                app:layout_constraintTop_toTopOf="@+id/tv_landmarkLabel" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/et_inputLandmark"
+                                android:layout_width="@dimen/dp_0"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:background="@drawable/drawable_layer_input_field"
+                                android:fontFamily="@font/lato_regular"
+                                android:gravity="start|center_vertical"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:minHeight="@dimen/_42sdp"
+                                android:padding="@dimen/_4sdp"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/cyan_gray"
+                                android:textSize="@dimen/_15ssp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_landmarkLabel" />
+
                             <!--Phone-->
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tv_phoneLabel"
@@ -1093,7 +1165,7 @@
                                 android:textColor="@color/midnight_express"
                                 android:textSize="@dimen/_11ssp"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/et_inputPinCode" />
+                                app:layout_constraintTop_toBottomOf="@+id/et_inputLandmark" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/iv_mobileMandatory"

@@ -20,7 +20,12 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.esoftwere.hfk.core.AppConstants
 import com.esoftwere.hfk.model.location_filter.LocationFilterModel
 import com.esoftwere.hfk.model.login.UserDataModel
+import com.esoftwere.hfk.socket.SocketConstants
+import com.esoftwere.hfk.socket.SocketLibrary
+import com.esoftwere.hfk.socket.SocketParser
+import com.esoftwere.hfk.socket.SocketUtility
 import com.esoftwere.hfk.ui.add_machinery.AddMachineryActivity
+import com.esoftwere.hfk.ui.chat_user_list.ChatUserListActivity
 import com.esoftwere.hfk.ui.location_filter.LocationFilterActivity
 import com.esoftwere.hfk.ui.market_view.MarketViewActivity
 import com.esoftwere.hfk.ui.my_profile.MyProfileActivity
@@ -29,6 +34,8 @@ import com.esoftwere.hfk.ui.search.ProductSearchActivity
 import com.esoftwere.hfk.ui.web_view.WebViewActivity
 import com.esoftwere.hfk.utils.AndroidUtility
 import com.esoftwere.hfk.utils.ValidationHelper
+import com.esoftwere.hfk.utils.loadImageFromUrl
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.nav_header.view.*
 
 class HomeActivity : BaseActivity() {
@@ -38,6 +45,7 @@ class HomeActivity : BaseActivity() {
 
     private var navHeaderView: View? = null
     private var navHeaderUserName: AppCompatTextView? = null
+    private var navHeaderUserProfiler: CircleImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +54,7 @@ class HomeActivity : BaseActivity() {
         initUIElements()
         initToolbar()
         initListeners()
+        initializeSocketVariable()
         setUpDrawerHeaderUserProfile()
 
         if (savedInstanceState == null) {
@@ -92,6 +101,12 @@ class HomeActivity : BaseActivity() {
         navHeaderView = binding.navView?.getHeaderView(0)
         navHeaderView?.apply {
             navHeaderUserName = findViewById(R.id.tv_userName)
+            navHeaderUserProfiler = findViewById(R.id.iv_userProfile)
+
+            navHeaderUserProfiler?.setOnClickListener {
+                moveToMyProfileActivity()
+                binding.dlHomeRoot.closeDrawer(GravityCompat.START)
+            }
         }
     }
 
@@ -160,12 +175,16 @@ class HomeActivity : BaseActivity() {
                     moveToAddProductActivity()
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.bottom_nav_profile -> {
-                    moveToMyProfileActivity()
+                R.id.bottom_nav_my_product -> {
+                    moveToProductListByUserActivity()
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.bottom_nav_youtube -> {
-                    openYoutubeChannel()
+                R.id.bottom_nav_market_view -> {
+                    moveToMarketViewActivity()
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.bottom_nav_chat -> {
+                    moveToChatUserListActivity()
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -183,7 +202,11 @@ class HomeActivity : BaseActivity() {
             Log.e("HomeAct", "FirstName: ${userDetails.firstName}")
             val userFirstName: String = ValidationHelper.optionalBlankText(userDetails.firstName)
             val userLastName: String = ValidationHelper.optionalBlankText(userDetails.lastName)
+            val userProfileImage: String = ValidationHelper.optionalBlankText(AndroidUtility.getUserImage())
             navHeaderUserName?.text = "$userFirstName $userLastName"
+            if (userProfileImage.isNotEmpty()) {
+                navHeaderUserProfiler?.loadImageFromUrl(userProfileImage, R.drawable.ic_profile)
+            }
 
             val districtName: String = ValidationHelper.optionalBlankText(userDetails.districtName)
             val stateName: String = ValidationHelper.optionalBlankText(userDetails.stateName)
@@ -197,6 +220,19 @@ class HomeActivity : BaseActivity() {
                 } else {
                     "Uluberia, WB"
                 }).toString()
+        }
+    }
+
+    private fun initializeSocketVariable() {
+        try {
+            /*SocketCommonData.mSocket = null;*/
+            SocketConstants.mSocketUtility = SocketUtility()
+            SocketConstants.mSocketParser = SocketParser()
+            SocketConstants.mSocketLibrary = SocketLibrary()
+            SocketConstants.mSocketUtility?.socketUrl = SocketConstants.SOCKET_URL
+            SocketConstants.mSocketUtility?.socketPort = SocketConstants.SOCKET_PORT
+        } catch (e: Exception) {
+            Log.e("CreateSocketException", "ExceptionCause: " + e.message)
         }
     }
 
@@ -282,6 +318,12 @@ class HomeActivity : BaseActivity() {
 
     private fun moveToMyProfileActivity() {
         val intent = Intent(this, MyProfileActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
+    }
+
+    private fun moveToChatUserListActivity() {
+        val intent = Intent(this, ChatUserListActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
     }

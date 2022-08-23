@@ -3,20 +3,27 @@ package com.esoftwere.hfk.ui.market_view
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.esoftwere.hfk.R
+import com.esoftwere.hfk.callbacks.RelatedProductItemClickListener
 import com.esoftwere.hfk.core.HFKApplication
 import com.esoftwere.hfk.databinding.ActivityMarketViewBinding
 import com.esoftwere.hfk.model.add_product.CategoryItemModel
 import com.esoftwere.hfk.model.add_product.CategoryListResponseModel
 import com.esoftwere.hfk.model.main_category.MainCategoryItemModel
 import com.esoftwere.hfk.model.main_category.MainCategoryListResponseModel
+import com.esoftwere.hfk.model.market_view.MarketViewItemModel
 import com.esoftwere.hfk.model.market_view.MarketViewRequestModel
 import com.esoftwere.hfk.model.market_view.MarketViewResponseModel
+import com.esoftwere.hfk.model.product_details.RelatedProductItemModel
 import com.esoftwere.hfk.model.product_list_by_cat.ProductItemByCatModel
 import com.esoftwere.hfk.model.product_list_by_cat.ProductListByCatRequestModel
 import com.esoftwere.hfk.model.product_list_by_cat.ProductListByCatResponseModel
@@ -30,7 +37,8 @@ import com.esoftwere.hfk.ui.add_product.adapter.MainCategoryListAdapter
 import com.esoftwere.hfk.ui.common.CommonViewModel
 import com.esoftwere.hfk.ui.common.CommonViewModelFactory
 import com.esoftwere.hfk.ui.dialog.CustomLoaderDialog
-import com.esoftwere.hfk.ui.market_view.adapter.ProductListAdapter
+import com.esoftwere.hfk.ui.market_view.adapter.*
+import com.esoftwere.hfk.ui.product_details.adapter.RelatedProductItemAdapter
 import com.esoftwere.hfk.ui.product_list_by_cat.ProductListByCatViewModel
 import com.esoftwere.hfk.ui.product_list_by_cat.ProductListByCatViewModelFactory
 import com.esoftwere.hfk.ui.register.adapter.StateListAdapter
@@ -43,13 +51,13 @@ class MarketViewActivity : AppCompatActivity() {
     private lateinit var mCustomLoaderDialog: CustomLoaderDialog
     private lateinit var mCommonViewModel: CommonViewModel
     private lateinit var mProductListByCatViewModel: ProductListByCatViewModel
+    private lateinit var mMarketViewItemAdapter: MarketViewItemAdapter
     private lateinit var mMarketViewModel: MarketViewModel
 
     private val TAG: String = "MarketViewActivity"
-    private var mSelectedMainCategoryId: String = ""
-    private var mSelectedCategoryId: String = ""
-    private var mSelectedProductId: String = ""
-    private var mSelectedStateId: String = ""
+    private var mSelectedMainCategoryId: String? = null
+    private var mSelectedCategoryId: String? = null
+    private var mSelectedStateId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +66,12 @@ class MarketViewActivity : AppCompatActivity() {
         initToolbar()
         initVariable()
         initListeners()
+        initMarketViewItemAdapter()
         initViewModel()
 
         callMainCategoryListAPI()
         callStateListPI()
+        callMarketViewAPI()
     }
 
     private fun initToolbar() {
@@ -80,9 +90,15 @@ class MarketViewActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        binding.btnMarketView.setOnClickListener {
-            callMarketViewAPI()
-        }
+
+    }
+
+    private fun initMarketViewItemAdapter() {
+        mMarketViewItemAdapter = MarketViewItemAdapter(mContext)
+        val linearLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
+        binding.rvMarketViewItemList.layoutManager = linearLayoutManager
+        binding.rvMarketViewItemList.itemAnimator = DefaultItemAnimator()
+        binding.rvMarketViewItemList.adapter = mMarketViewItemAdapter
     }
 
     private fun initViewModel() {
@@ -169,12 +185,12 @@ class MarketViewActivity : AppCompatActivity() {
                                         0,
                                         StateModel(
                                             stateId = "0",
-                                            state = getString(R.string.select_state),
+                                            state = getString(R.string.label_all),
                                             activeFlag = "1"
                                         )
                                     )
 
-                                    val adapter = StateListAdapter(
+                                    val adapter = StateListMarketViewAdapter(
                                         mContext,
                                         stateListResponse.stateList
                                     )
@@ -196,6 +212,13 @@ class MarketViewActivity : AppCompatActivity() {
                                                         ValidationHelper.optionalBlankText(
                                                             stateModel.stateId
                                                         )
+
+                                                    mSelectedStateId?.let { selectedStateId ->
+                                                        callMarketViewAPI()
+                                                    }
+                                                } else {
+                                                    mSelectedStateId = null
+                                                    callMarketViewAPI()
                                                 }
                                             }
                                         }
@@ -218,51 +241,29 @@ class MarketViewActivity : AppCompatActivity() {
                 }
             })
 
-        mProductListByCatViewModel.mProductListByCatLiveData?.observe(
-            this,
-            Observer<ResultWrapper<ProductListByCatResponseModel>> { result ->
-                when (result) {
-                    is ResultWrapper.Progress -> {
-                        if (result.isLoading.not()) {
-                            hideLoader()
-                        }
-                    }
-
-                    is ResultWrapper.Success -> {
-                        result.data?.let { productListResponse ->
-                            setProductListResponse(productListResponse)
-                        }
-                    }
-
-                    is ResultWrapper.Failure -> {
-                        AndroidUtility.showErrorCustomSnackbar(
-                            binding.clMarketViewRoot,
-                            result.error
-                        )
-                    }
-                }
-            })
-
         mMarketViewModel.mMarketViewLiveData?.observe(
-            this,
+            this@MarketViewActivity,
             Observer<ResultWrapper<MarketViewResponseModel>> { result ->
                 when (result) {
                     is ResultWrapper.Progress -> {
                         if (result.isLoading.not()) {
-                            hideLoader()
+                            this@MarketViewActivity.hideLoader()
                         }
                     }
 
                     is ResultWrapper.Success -> {
                         result.data?.let { marketViewResponse ->
-                            AndroidUtility.showSuccessCustomToast(mContext, marketViewResponse.message)
-                            val marketValue =
-                                ValidationHelper.optionalBlankText(marketViewResponse.marketValue)
+                            if (marketViewResponse.success) {
+                                AndroidUtility.printModelDataWithGSON(TAG, marketViewResponse)
+                                setMarketViewResponseData(marketViewResponse.marketViewItemList)
+                            } else {
+                                Log.e(TAG, "Inside MarketViewLiveData")
 
-                            if(marketValue.isNotEmpty()) {
-                                binding.tvMarketValueLabel.visibility = View.VISIBLE
-                                binding.cvMarketViewHolder.visibility = View.VISIBLE
-                                binding.tvMarketValue.text = marketValue
+                                AndroidUtility.showErrorCustomSnackbar(
+                                    binding.clMarketViewRoot,
+                                    marketViewResponse.message
+                                )
+                                switchToNoMarketViewListFoundView()
                             }
                         }
                     }
@@ -297,11 +298,11 @@ class MarketViewActivity : AppCompatActivity() {
                 0,
                 MainCategoryItemModel(
                     mainCategoryId = "0",
-                    mainCategoryName = getString(R.string.select_category),
+                    mainCategoryName = getString(R.string.label_all),
                 )
             )
 
-            val adapter = MainCategoryListAdapter(
+            val adapter = MainCategoryListMarketViewAdapter(
                 this,
                 mainCategoryListResponseModel.categoryList
             )
@@ -322,9 +323,15 @@ class MarketViewActivity : AppCompatActivity() {
                                 categoryItemModel.mainCategoryId
                             )
 
-                            if (mSelectedMainCategoryId.isNotEmpty()) {
-                                callCategoryListAPI(mSelectedMainCategoryId)
+                            mSelectedMainCategoryId?.let { selectedMainCategoryId ->
+                                if (selectedMainCategoryId.isNotEmpty()) {
+                                    callCategoryListAPI(selectedMainCategoryId)
+                                    callMarketViewAPI()
+                                }
                             }
+                        } else {
+                            mSelectedMainCategoryId = null
+                            callMarketViewAPI()
                         }
                     }
                 }
@@ -337,13 +344,13 @@ class MarketViewActivity : AppCompatActivity() {
                 0,
                 CategoryItemModel(
                     categoryId = "0",
-                    categoryName = getString(R.string.select_category),
+                    categoryName = getString(R.string.label_all),
                     mainCategoryID = "0",
                     categoryImageUrl = ""
                 )
             )
 
-            val adapter = CategoryListAdapter(
+            val adapter = SubCategoryListMarketViewAdapter(
                 this,
                 categoryListResponseModel.categoryList
             )
@@ -364,60 +371,38 @@ class MarketViewActivity : AppCompatActivity() {
                                 categoryItemModel.categoryId
                             )
 
-                            callProductListByCatAPI(mSelectedCategoryId)
+                            mSelectedCategoryId?.let { selectedCategoryId ->
+                                callMarketViewAPI()
+                            }
+                        } else {
+                            mSelectedCategoryId = null
+                            callMarketViewAPI()
                         }
                     }
                 }
         }
     }
 
-    private fun setProductListResponse(productListByCatResponseModel: ProductListByCatResponseModel) {
-        if (productListByCatResponseModel.productListModel.isNotEmpty()) {
-            productListByCatResponseModel.productListModel.add(
-                0,
-                ProductItemByCatModel(
-                    itemId = "0",
-                    itemName = getString(R.string.select_product),
-                    itemType = "",
-                    itemStatus = "",
-                    itemImageUrl = "",
-                    itemPrice = "",
-                    itemRating = "",
-                    categoryId = "",
-                    productDescription = "",
-                    itemPriceUnitId = "",
-                    itemQuantity = "",
-                    itemQuantityUnitId = "",
-                    productQuality = "",
-                    productLocation = ""
-                )
-            )
+    private fun setMarketViewResponseData(marketViewItemList: ArrayList<MarketViewItemModel>) {
+        if (marketViewItemList.isNotEmpty()) {
+            switchToMarketViewListFoundView()
 
-            val adapter = ProductListAdapter(
-                this,
-                productListByCatResponseModel.productListModel
-            )
-            binding.spProduct.adapter = adapter
-            binding.spProduct.onItemSelectedListener =
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-                    override fun onItemSelected(
-                        parent: AdapterView<*>?,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        val productItemModel =
-                            productListByCatResponseModel.productListModel[position]
-                        if (productItemModel.itemId.equals("0", true).not()) {
-                            mSelectedProductId = ValidationHelper.optionalBlankText(
-                                productItemModel.itemId
-                            )
-                        }
-                    }
-                }
+            if (this::mMarketViewItemAdapter.isInitialized) {
+                mMarketViewItemAdapter.setMarketViewProductItemList(marketViewItemList)
+            }
+        } else {
+            switchToNoMarketViewListFoundView()
         }
+    }
+
+    private fun switchToNoMarketViewListFoundView() {
+        binding.rvMarketViewItemList.visibility = View.GONE
+        binding.tvNoData.visibility = View.VISIBLE
+    }
+
+    private fun switchToMarketViewListFoundView() {
+        binding.rvMarketViewItemList.visibility = View.VISIBLE
+        binding.tvNoData.visibility = View.GONE
     }
 
     /**
@@ -500,11 +485,9 @@ class MarketViewActivity : AppCompatActivity() {
 
         showLoader()
         mMarketViewModel.callMarketViewAPI(
-            MarketViewRequestModel(
-                categoryId = mSelectedCategoryId,
-                productId = mSelectedProductId,
-                stateId = mSelectedStateId
-            )
+            mainCategoryId = mSelectedMainCategoryId,
+            categoryId = mSelectedCategoryId,
+            stateId = mSelectedStateId
         )
     }
 }

@@ -29,16 +29,18 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:targetApi="m">
         <activity
+            android:name=".ui.chat_user_list.ChatUserListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".ui.encrypt.AESEncryptDecryptActivity"
-            android:exported="false">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".ui.web_view.WebViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.forgot_password.ForgotPasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

@@ -5,27 +5,34 @@
         android:id="@+id/bottom_nav_tractor"
         android:enabled="true"
         app:showAsAction="always"
-        android:title="Machinery"
+        android:title="Sell Machinery"
         android:icon="@drawable/ic_bottom_nav_tractor"/>
 
     <item
         android:id="@+id/bottom_nav_seller"
         android:enabled="true"
         app:showAsAction="always"
-        android:title="Seller"
+        android:title="Sell Crops"
         android:icon="@drawable/ic_bottom_shake_hand" />
 
     <item
-        android:id="@+id/bottom_nav_profile"
+        android:id="@+id/bottom_nav_my_product"
         android:enabled="true"
         app:showAsAction="always"
-        android:title="Profile"
-        android:icon="@drawable/ic_bottom_user"/>
+        android:title="My Product"
+        android:icon="@drawable/ic_bottom_my_product"/>
 
     <item
-        android:id="@+id/bottom_nav_youtube"
+        android:id="@+id/bottom_nav_market_view"
         android:enabled="true"
         app:showAsAction="always"
-        android:title="Youtube"
-        android:icon="@drawable/ic_bottom_nav_youtube"/>
+        android:title="Market View"
+        android:icon="@drawable/ic_bottom_market_view"/>
+
+    <item
+        android:id="@+id/bottom_nav_chat"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="Chat"
+        android:icon="@drawable/ic_chat_bubble"/>
 </menu>

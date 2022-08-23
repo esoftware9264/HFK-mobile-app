@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.canhub.cropper.CropImage
 import com.canhub.cropper.CropImageView
 import com.esoftwere.hfk.R
+import com.esoftwere.hfk.callbacks.MultiImageItemClickListener
 import com.esoftwere.hfk.core.AppConstants
 import com.esoftwere.hfk.core.HFKApplication
 import com.esoftwere.hfk.databinding.ActivityAddMachineryBinding
@@ -101,6 +102,7 @@ class AddMachineryActivity : BaseActivity() {
     private var mSelectedUserDistrictId: String = ""
     private var mSelectedUserBlockId: String = ""
     private var mUploadUserVillage: String = ""
+    private var mUploadUserLandMark: String = ""
     private var mUploadUserPinCode: String = ""
     private var mUploadUserPhone: String = ""
     private var mImageFilePath: String = ""
@@ -284,13 +286,30 @@ class AddMachineryActivity : BaseActivity() {
             uploadVideoClickHandler()
         }
 
+        binding.tvFileBrowseVideoDeleteLabel.setOnClickListener {
+            deleteVideoClickHandler()
+        }
+
         binding.btnSubmit.setOnClickListener {
             btnSubmitClickHandler()
         }
     }
 
     private fun initMultiImageAdapter() {
-        mMultiImageAddMachineryAdapter = MultiImageAddMachineryAdapter(mContext)
+        mMultiImageAddMachineryAdapter = MultiImageAddMachineryAdapter(mContext, object : MultiImageItemClickListener {
+            override fun onImageItemClick(imagePath: String) {
+                mMultiImageList?.let { productImageList ->
+                    val itemIndex: Int = productImageList.indexOf(imagePath)
+                    if (itemIndex != -1) {
+                        productImageList.removeAt(itemIndex)
+                        mMultiImageFileNameList.removeAt(itemIndex)
+                        Log.e(TAG, productImageList.toString())
+                        Log.e(TAG, mMultiImageFileNameList.toString())
+                        setMultiProductImageList(productImageList)
+                    }
+                }
+            }
+        })
         binding.rvUploadImageList.itemAnimator = DefaultItemAnimator()
         binding.rvUploadImageList.adapter = mMultiImageAddMachineryAdapter
     }
@@ -385,11 +404,9 @@ class AddMachineryActivity : BaseActivity() {
 
                                 mMultiImageList.add(mUploadImageFileUrl)
                                 mMultiImageFileNameList.add(uploadImageFileName)
-                                if (this::mMultiImageAddMachineryAdapter.isInitialized) {
-                                    mMultiImageAddMachineryAdapter.setMultiImageItemList(
-                                        mMultiImageList
-                                    )
-                                }
+                                Log.e(TAG, mMultiImageList.toString())
+
+                                setMultiProductImageList(mMultiImageList)
                             }
                         }
                     }
@@ -420,6 +437,7 @@ class AddMachineryActivity : BaseActivity() {
                             mUploadVideoFileName = ValidationHelper.optionalBlankText(videoUploadResponse.fileData)
 
                             if (mUploadVideoFileName.isNotEmpty()) {
+                                binding.tvFileBrowseVideoDeleteLabel.visibility = View.VISIBLE
                                 binding.tvUploadVideo.text = mUploadVideoFileName
                             }
                         }
@@ -704,6 +722,19 @@ class AddMachineryActivity : BaseActivity() {
         }
     }
 
+    private fun setMultiProductImageList(maintenanceProductImageList: ArrayList<String>) {
+        if (maintenanceProductImageList.isNotEmpty()) {
+            binding.rvUploadImageList.visibility = View.VISIBLE
+            binding.tvUploadPhoto.text = "Max ${maintenanceProductImageList.size} of 5 uploaded"
+
+            if (this::mMultiImageAddMachineryAdapter.isInitialized) {
+                mMultiImageAddMachineryAdapter.setMultiImageItemList(maintenanceProductImageList)
+            }
+        } else {
+            binding.rvUploadImageList.visibility = View.GONE
+        }
+    }
+
     private fun checkStoragePermission(permissionHandler: PermissionHandler) {
         val rationale = "Please provide Camera & Storage permission to get access to photos"
         val options = Permissions.Options()
@@ -860,8 +891,8 @@ class AddMachineryActivity : BaseActivity() {
             ValidationHelper.optionalBlankText(binding.etInputUserName.text.toString())
         mUploadUserVillage =
             ValidationHelper.optionalBlankText(binding.etInputVillage.text.toString())
-        mUploadUserPinCode =
-            ValidationHelper.optionalBlankText(binding.etInputPinCode.text.toString())
+        mUploadUserPinCode = ValidationHelper.optionalBlankText(binding.etInputPinCode.text.toString())
+        mUploadUserLandMark = ValidationHelper.optionalBlankText(binding.etInputLandmark.text.toString())
         mUploadUserPhone = ValidationHelper.optionalBlankText(binding.etInputPhone.text.toString())
 
         when {
@@ -953,6 +984,13 @@ class AddMachineryActivity : BaseActivity() {
                 )
             }
         })
+    }
+
+    private fun deleteVideoClickHandler(){
+        binding.tvUploadVideo.text = ""
+        mCaptureVideoFilePath = ""
+        mGalleryVideoFilePath = ""
+        binding.tvFileBrowseVideoDeleteLabel.visibility = View.GONE
     }
 
     private fun btnSubmitClickHandler() {
@@ -1114,6 +1152,7 @@ class AddMachineryActivity : BaseActivity() {
                 sellerBlockId = mSelectedUserBlockId,
                 sellerVillage = mUploadUserVillage,
                 sellerPinCode = mUploadUserPinCode,
+                sellerLandmark = mUploadUserLandMark,
                 sellerPhnNo = mUploadUserPhone
             )
         )

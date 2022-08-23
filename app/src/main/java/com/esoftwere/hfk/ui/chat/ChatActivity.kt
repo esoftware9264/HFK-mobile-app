@@ -3,6 +3,7 @@ package com.esoftwere.hfk.ui.chat
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,12 +16,14 @@ import com.esoftwere.hfk.model.chat.ChatResponseModel
 import com.esoftwere.hfk.model.login.LoginRequestModel
 import com.esoftwere.hfk.model.login.LoginResponseModel
 import com.esoftwere.hfk.network.ResultWrapper
+import com.esoftwere.hfk.socket.SocketConstants
 import com.esoftwere.hfk.ui.dialog.CustomLoaderDialog
 import com.esoftwere.hfk.ui.login.LoginViewModel
 import com.esoftwere.hfk.ui.login.LoginViewModelFactory
 import com.esoftwere.hfk.utils.AndroidUtility
 import com.esoftwere.hfk.utils.ValidationHelper
 import com.esoftwere.hfk.utils.hideKeyboard
+import org.json.JSONObject
 
 class ChatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
@@ -28,6 +31,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var mCustomLoaderDialog: CustomLoaderDialog
     private lateinit var mChatViewModel: ChatViewModel
 
+    private val TAG: String = "ChatActivity"
     private var mChatMsg = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +42,7 @@ class ChatActivity : AppCompatActivity() {
         initToolbar()
         initListeners()
         initViewModel()
+        initializeSocket()
     }
 
     override fun onBackPressed() {
@@ -111,6 +116,33 @@ class ChatActivity : AppCompatActivity() {
             })
     }
 
+    private fun initializeSocket() {
+        //Connect Socket
+        if (SocketConstants.mSocket == null) {
+            val socketQueryParams = "${AndroidUtility.getUserId()}"
+            SocketConstants.mSocketParser?.createSocket(socketQueryParams)
+        }
+    }
+
+    private fun emitChatMsgEvent(chatMsg: String) {
+        Log.e(TAG, "SocketStatus(SendMsg): " + SocketConstants.mSocket?.connected())
+        Log.e(TAG, "RecipientId: ${getChatReceiverId()}")
+        SocketConstants.mSocket?.let { socketObj ->
+            if (socketObj.connected()) {
+                if (getChatReceiverId().isNotEmpty()) {
+                    val payload: JSONObject = JSONObject()
+                    payload.put("message", chatMsg)
+
+                    Log.e(TAG, "SendMsgEventPayload: $payload")
+                    SocketConstants.mSocketUtility?.send(
+                        SocketConstants.SOCKET_EMIT_SEND_MSG_EVENT,
+                        payload
+                    )
+                }
+            }
+        }
+    }
+
     private fun showLoader() {
         if (this::mCustomLoaderDialog.isInitialized) {
             mCustomLoaderDialog.show()
@@ -136,7 +168,8 @@ class ChatActivity : AppCompatActivity() {
         mChatMsg = ValidationHelper.optionalBlankText(binding.etChat.text.toString())
 
         if (mChatMsg.isNotEmpty()) {
-            callChatAPI()
+            //callChatAPI()
+            emitChatMsgEvent(mChatMsg)
         } else {
             AndroidUtility.showErrorCustomToast(mContext, "Please Write Some Message")
         }

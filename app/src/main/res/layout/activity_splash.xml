@@ -9,15 +9,47 @@
         android:background="@color/primary"
         tools:context=".ui.splash.SplashActivity">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_welcomeToLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/welcome_to"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_23ssp"
+            android:textAllCaps="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/iv_companyLogo" />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_companyLogo"
-            android:layout_width="@dimen/_175sdp"
-            android:layout_height="@dimen/_195sdp"
-            android:scaleType="fitCenter"
+            android:layout_width="@dimen/_192sdp"
+            android:layout_height="@dimen/_192sdp"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_hfk_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_companyNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/app_full_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_23ssp"
+            android:textAllCaps="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_companyLogo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

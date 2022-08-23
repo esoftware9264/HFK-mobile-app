@@ -5,6 +5,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
         android:divider="@color/cyan_gray"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -12,8 +14,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_category"
-            android:layout_width="@dimen/_22sdp"
-            android:layout_height="@dimen/_22sdp"
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_42sdp"
             android:layout_marginStart="@dimen/_4sdp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"

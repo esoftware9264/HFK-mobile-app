@@ -45,12 +45,38 @@
                             android:scaleType="fitXY"
                             android:src="@drawable/ic_login_top" />
 
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_companyNameLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:layout_marginBottom="@dimen/_16sdp"
+                            android:fontFamily="@font/lato_bold"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="@string/app_full_name"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_15ssp"
+                            android:textAllCaps="true"
+                            app:layout_constraintEnd_toStartOf="@+id/view_dividerFirst"
+                            app:layout_constraintBottom_toBottomOf="@+id/iv_companyLogo" />
+
+                        <View
+                            android:id="@+id/view_dividerFirst"
+                            android:layout_width="@dimen/_2sdp"
+                            android:layout_height="@dimen/dp_0"
+                            android:background="@color/white"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            app:layout_constraintTop_toTopOf="@+id/tv_companyNameLabel"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_companyNameLabel"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_companyLogo"/>
+
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iv_companyLogo"
-                            android:layout_width="@dimen/_95sdp"
+                            android:layout_width="@dimen/_108sdp"
                             android:layout_height="@dimen/_125sdp"
                             android:layout_marginTop="@dimen/_36sdp"
-                            android:layout_marginEnd="@dimen/_36sdp"
+                            android:layout_marginEnd="@dimen/_16sdp"
                             android:scaleType="fitXY"
                             android:src="@drawable/ic_hfk_logo"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -246,12 +272,28 @@
                             android:src="@drawable/ic_eye_visibility" />-->
                     </LinearLayout>
 
+                    <com.esoftwere.hfk.custom_view.LinkTextView
+                        android:id="@+id/tv_forgotPasswordLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="start"
+                        android:includeFontPadding="false"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:text="@string/forgot_password"
+                        android:textColor="@color/payne_grey"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintEnd_toEndOf="@+id/ll_passwordHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/ll_passwordHolder" />
+
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_login"
                         android:layout_width="@dimen/dp_0"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_24sdp"
                         android:layout_marginEnd="@dimen/_8sdp"
                         android:background="@drawable/drawable_curved_solid_primary"
                         android:fontFamily="@font/lato_bold"
@@ -262,7 +304,7 @@
                         android:textSize="@dimen/_19ssp"
                         app:layout_constraintEnd_toEndOf="@+id/ll_passwordHolder"
                         app:layout_constraintStart_toStartOf="@+id/ll_passwordHolder"
-                        app:layout_constraintTop_toBottomOf="@+id/ll_passwordHolder" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_forgotPasswordLabel" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_notHaveAccountLabel"

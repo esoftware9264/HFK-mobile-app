@@ -92,6 +92,8 @@ object AppConstants {
     const val REQUEST_TYPE_PRODUCT_SEARCH = "product/search"
     const val REQUEST_TYPE_UPLOAD_FILE = "upload/file"
     const val REQUEST_TYPE_UPLOAD_VIDEO_FILE = "upload/videoFile"
-    const val REQUEST_TYPE_MARKET_VIEW = "customer/marketValueByProductId"
+    const val REQUEST_TYPE_MARKET_VIEW = "customer/marketValue"
     const val REQUEST_TYPE_SEND_PUSH_NOTIFICATION = "customer/sendPushNotification"
+    const val REQUEST_TYPE_CHAT_USER_LIST_BY_ID = "customer/getChatUsersById"
+    const val REQUEST_TYPE_FORGOT_PASSWORD_API = "customer/forgotPassword"
 }

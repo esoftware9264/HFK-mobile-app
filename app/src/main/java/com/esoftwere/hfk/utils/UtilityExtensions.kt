@@ -116,3 +116,19 @@ fun String?.addINRSymbolToPrice(): String {
 
     return "-"
 }
+
+fun String?.addINRSymbolToPriceWithoutSuffix(): String {
+    if (ValidationHelper.optionalBlankText(this).isNotEmpty()) {
+        return "₹ $this"
+    }
+
+    return "-"
+}
+
+fun String.formatDecimalSeparator(): String {
+    return this
+        .reversed()
+        .chunked(3)
+        .joinToString(",")
+        .reversed()
+}

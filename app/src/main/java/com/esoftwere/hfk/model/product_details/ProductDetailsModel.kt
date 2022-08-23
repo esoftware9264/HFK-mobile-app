@@ -30,6 +30,16 @@ data class ProductDetailsModel(
     val createdAt: String,
     @field:SerializedName("product_location")
     val productLocation: String,
+    @field:SerializedName("machinery_years")
+    val machineryYears: String,
+    @field:SerializedName("machinery_months")
+    val machineryMonths: String,
+    @field:SerializedName("number_of_owners")
+    val numberOfOwners: String,
+    @field:SerializedName("product_view")
+    val productViewCount: Int,
+    @field:SerializedName("distance")
+    val productDistance: String,
     @field:SerializedName("is_rating")
     val isRating: Int,
     @field:SerializedName("rating")

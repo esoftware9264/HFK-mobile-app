@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.canhub.cropper.CropImage
 import com.canhub.cropper.CropImageView
 import com.esoftwere.hfk.R
+import com.esoftwere.hfk.callbacks.MultiImageItemClickListener
 import com.esoftwere.hfk.core.AppConstants
 import com.esoftwere.hfk.core.HFKApplication
 import com.esoftwere.hfk.databinding.ActivityAddProductBinding
@@ -95,6 +96,7 @@ class AddProductActivity : BaseActivity() {
     private var mSelectedUserBlockId: String = ""
     private var mUploadUserVillage: String = ""
     private var mUploadUserPinCode: String = ""
+    private var mUploadUserLandMark: String = ""
     private var mUploadUserPhone: String = ""
     private var mImageFilePath: String = ""
     private var mCaptureVideoFilePath: String = ""
@@ -141,7 +143,7 @@ class AddProductActivity : BaseActivity() {
                     val imageFile: File = File(mImageFilePath)
 
                     if (imageFile.exists()) {
-                        binding.tvUploadPhoto.text = mImageFilePath
+                        //binding.tvUploadPhoto.text = mImageFilePath
                         callImageUploadAPI()
                     }
                 } else {
@@ -287,13 +289,30 @@ class AddProductActivity : BaseActivity() {
             uploadVideoClickHandler()
         }
 
+        binding.tvFileBrowseVideoDeleteLabel.setOnClickListener {
+            deleteVideoClickHandler()
+        }
+
         binding.btnSubmit.setOnClickListener {
             btnSubmitClickHandler()
         }
     }
 
     private fun initMultiImageAdapter() {
-        mMultiImageAddProductAdapter = MultiImageAddProductAdapter(mContext)
+        mMultiImageAddProductAdapter = MultiImageAddProductAdapter(mContext, object : MultiImageItemClickListener {
+            override fun onImageItemClick(imagePath: String) {
+                mMultiImageList?.let { productImageList ->
+                    val itemIndex: Int = productImageList.indexOf(imagePath)
+                    if (itemIndex != -1) {
+                        productImageList.removeAt(itemIndex)
+                        mMultiImageFileNameList.removeAt(itemIndex)
+                        Log.e(TAG, productImageList.toString())
+                        Log.e(TAG, mMultiImageFileNameList.toString())
+                        setMultiProductImageList(productImageList)
+                    }
+                }
+            }
+        })
         binding.rvUploadImageList.itemAnimator = DefaultItemAnimator()
         binding.rvUploadImageList.adapter = mMultiImageAddProductAdapter
     }
@@ -413,11 +432,9 @@ class AddProductActivity : BaseActivity() {
 
                                 mMultiImageList.add(mUploadImageFileUrl)
                                 mMultiImageFileNameList.add(uploadImageFileName)
-                                if (this::mMultiImageAddProductAdapter.isInitialized) {
-                                    mMultiImageAddProductAdapter.setMultiImageItemList(
-                                        mMultiImageList
-                                    )
-                                }
+                                Log.e(TAG, mMultiImageList.toString())
+
+                                setMultiProductImageList(mMultiImageList)
                             }
                         }
                     }
@@ -448,6 +465,7 @@ class AddProductActivity : BaseActivity() {
                             mUploadVideoFileName = ValidationHelper.optionalBlankText(videoUploadResponse.fileData)
 
                             if (mUploadVideoFileName.isNotEmpty()) {
+                                binding.tvFileBrowseVideoDeleteLabel.visibility = View.VISIBLE
                                 binding.tvUploadVideo.text = mUploadVideoFileName
                             }
                         }
@@ -732,6 +750,19 @@ class AddProductActivity : BaseActivity() {
         }
     }
 
+    private fun setMultiProductImageList(maintenanceProductImageList: ArrayList<String>) {
+        if (maintenanceProductImageList.isNotEmpty()) {
+            binding.rvUploadImageList.visibility = View.VISIBLE
+            binding.tvUploadPhoto.text = "Max ${maintenanceProductImageList.size} of 5 uploaded"
+
+            if (this::mMultiImageAddProductAdapter.isInitialized) {
+                mMultiImageAddProductAdapter.setMultiImageItemList(maintenanceProductImageList)
+            }
+        } else {
+            binding.rvUploadImageList.visibility = View.GONE
+        }
+    }
+
     private fun checkStoragePermission(permissionHandler: PermissionHandler) {
         val rationale = "Please provide Camera & Storage permission to get access to photos"
         val options = Permissions.Options()
@@ -961,8 +992,8 @@ class AddProductActivity : BaseActivity() {
             ValidationHelper.optionalBlankText(binding.etInputUserName.text.toString())
         mUploadUserVillage =
             ValidationHelper.optionalBlankText(binding.etInputVillage.text.toString())
-        mUploadUserPinCode =
-            ValidationHelper.optionalBlankText(binding.etInputPinCode.text.toString())
+        mUploadUserPinCode = ValidationHelper.optionalBlankText(binding.etInputPinCode.text.toString())
+        mUploadUserLandMark = ValidationHelper.optionalBlankText(binding.etInputLandmark.text.toString())
         mUploadUserPhone = ValidationHelper.optionalBlankText(binding.etInputPhone.text.toString())
 
         when {
@@ -1068,6 +1099,13 @@ class AddProductActivity : BaseActivity() {
                 )
             }
         })
+    }
+
+    private fun deleteVideoClickHandler(){
+        binding.tvUploadVideo.text = ""
+        mCaptureVideoFilePath = ""
+        mGalleryVideoFilePath = ""
+        binding.tvFileBrowseVideoDeleteLabel.visibility = View.GONE
     }
 
     private fun btnSubmitClickHandler() {
@@ -1242,6 +1280,7 @@ class AddProductActivity : BaseActivity() {
                 sellerBlockId = mSelectedUserBlockId,
                 sellerVillage = mUploadUserVillage,
                 sellerPinCode = mUploadUserPinCode,
+                sellerLandmark = mUploadUserLandMark,
                 sellerPhnNo = mUploadUserPhone
             )
         )

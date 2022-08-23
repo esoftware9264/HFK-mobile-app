@@ -207,7 +207,7 @@
                         android:textColor="@color/midnight_express"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/et_inputLastName" />
+                        app:layout_constraintTop_toBottomOf="@+id/rl_spinnerCountry" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_mobileNumber"
@@ -220,10 +220,49 @@
                         app:layout_constraintStart_toEndOf="@+id/tv_mobileNumberLabel"
                         app:layout_constraintTop_toTopOf="@+id/tv_mobileNumberLabel" />
 
+                    <!--Phone Dial Code Holder-->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_phoneDialCodeHolder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:background="@drawable/drawable_layer_input_field"
+                        android:minHeight="@dimen/_42sdp"
+                        android:padding="@dimen/_4sdp"
+                        app:layout_constraintEnd_toStartOf="@+id/et_inputMobileNo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_mobileNumberLabel">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_inputDialCode"
+                            android:layout_width="@dimen/dp_0"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:clickable="false"
+                            android:digits="+-0123456789"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="start|center_vertical"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:maxLength="5"
+                            android:padding="@dimen/_4sdp"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13ssp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!--Mobile No Holder-->
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_inputMobileNo"
                         android:layout_width="@dimen/dp_0"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:background="@drawable/drawable_layer_input_field"
                         android:digits="0123456789"
@@ -231,14 +270,15 @@
                         android:gravity="start|center_vertical"
                         android:hint="@string/enter_mobile_number"
                         android:imeOptions="actionNext"
-                        android:inputType="numberDecimal"
+                        android:inputType="phone"
+                        android:maxLength="10"
                         android:minHeight="@dimen/_42sdp"
                         android:padding="@dimen/_4sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/cyan_gray"
                         android:textSize="@dimen/_15ssp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cl_phoneDialCodeHolder"
                         app:layout_constraintTop_toBottomOf="@+id/tv_mobileNumberLabel" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -372,7 +412,7 @@
                         android:textColor="@color/midnight_express"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ll_passwordHolder" />
+                        app:layout_constraintTop_toBottomOf="@+id/et_inputLastName" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_country"
@@ -430,7 +470,7 @@
                         android:textColor="@color/midnight_express"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rl_spinnerCountry" />
+                        app:layout_constraintTop_toBottomOf="@+id/ll_passwordHolder" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_state"
@@ -534,6 +574,7 @@
                             android:src="@drawable/ic_arrow_down" />
                     </RelativeLayout>
 
+                    <!--Block Holder-->
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_blockLabel"
                         android:layout_width="wrap_content"
@@ -592,6 +633,103 @@
                             android:src="@drawable/ic_arrow_down" />
                     </RelativeLayout>
 
+                    <!--Village Holder-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_villageLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/village"
+                        android:textColor="@color/midnight_express"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rl_spinnerBlock" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_village"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:src="@drawable/ic_star_mandatory"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_villageLabel"
+                        app:layout_constraintStart_toEndOf="@+id/tv_villageLabel"
+                        app:layout_constraintTop_toTopOf="@+id/tv_villageLabel" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_inputVillage"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@drawable/drawable_layer_input_field"
+                        android:digits="0123456789"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/enter_village"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="25"
+                        android:minHeight="@dimen/_42sdp"
+                        android:padding="@dimen/_4sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/cyan_gray"
+                        android:textSize="@dimen/_15ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_villageLabel" />
+
+                    <!--Landmark Holder-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_landmarkLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/landmark"
+                        android:textColor="@color/midnight_express"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_inputVillage" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_landmark"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:src="@drawable/ic_star_mandatory"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_landmarkLabel"
+                        app:layout_constraintStart_toEndOf="@+id/tv_landmarkLabel"
+                        app:layout_constraintTop_toTopOf="@+id/tv_landmarkLabel" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_inputLandmark"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@drawable/drawable_layer_input_field"
+                        android:digits="0123456789"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/enter_landmark"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="25"
+                        android:minHeight="@dimen/_42sdp"
+                        android:padding="@dimen/_4sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/cyan_gray"
+                        android:textSize="@dimen/_15ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_landmarkLabel" />
+
+                    <!--PinCode Holder-->
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_pinCodeLabel"
                         android:layout_width="wrap_content"
@@ -604,7 +742,7 @@
                         android:textColor="@color/midnight_express"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rl_spinnerBlock" />
+                        app:layout_constraintTop_toBottomOf="@+id/et_inputLandmark" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_pin"

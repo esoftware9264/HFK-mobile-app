@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var mContext: Context
     private lateinit var mCustomLoaderDialog: CustomLoaderDialog
-    private lateinit var mLoginViewModel: LoginViewModel
+    //private lateinit var mLoginViewModel: LoginViewModel
     private lateinit var mLoginViewModelFlow: LoginViewModelFlow
 
     private val TAG = "LoginActivity"
@@ -71,13 +71,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        mLoginViewModel = ViewModelProvider(
+        /*mLoginViewModel = ViewModelProvider(
             this, LoginViewModelFactory(this.applicationContext as HFKApplication)
-        ).get<LoginViewModel>(LoginViewModel::class.java)
+        ).get<LoginViewModel>(LoginViewModel::class.java)*/
         mLoginViewModelFlow = ViewModelProvider(
             this, LoginViewModelFlowFactory(this.applicationContext as HFKApplication)
         ).get<LoginViewModelFlow>(LoginViewModelFlow::class.java)
-        mLoginViewModel.mLoginLiveData?.observe(
+      /*  mLoginViewModel.mLoginLiveData?.observe(
             this@LoginActivity,
             Observer<ResultWrapper<LoginResponseModel>> { result ->
                 when (result) {
@@ -131,7 +131,7 @@ class LoginActivity : AppCompatActivity() {
                         )
                     }
                 }
-            })
+            })*/
 
         mLoginViewModelFlow.mLoginLiveData?.observe(
             this@LoginActivity,
@@ -287,7 +287,7 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Calling API Functionality
      */
-    private fun callLoginAPI() {
+    /*private fun callLoginAPI() {
         if (AndroidUtility.isNetworkAvailable(mContext).not()) {
             AndroidUtility.showErrorCustomSnackbar(
                 binding.llLoginRoot,
@@ -304,7 +304,7 @@ class LoginActivity : AppCompatActivity() {
                 userType = mSelectedRadioButton,
             )
         )
-    }
+    }*/
 
     private fun callLoginAPIFlow() {
         if (AndroidUtility.isNetworkAvailable(mContext).not()) {

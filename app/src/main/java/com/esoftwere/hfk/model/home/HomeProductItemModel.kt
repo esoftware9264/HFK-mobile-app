@@ -30,6 +30,10 @@ data class HomeProductItemModel(
     val itemQuantityUnitId: String,
     @field:SerializedName("average_rating")
     val itemRating: String,
+    @field:SerializedName("product_view")
+    val productViewCount: Int,
+    @field:SerializedName("distance")
+    val productDistanceCalculate: String,
     @field:SerializedName("category_id")
     val categoryId: String
 ) : Parcelable

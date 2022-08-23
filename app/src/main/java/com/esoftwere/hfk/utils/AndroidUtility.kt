@@ -180,6 +180,10 @@ object AndroidUtility {
         return ValidationHelper.optionalBlankText(getUserDetails()?.countryId)
     }
 
+    fun getUserStateId(): String {
+        return ValidationHelper.optionalBlankText(getUserDetails()?.stateId)
+    }
+
     fun getUpdatedFCMToken(): String {
         return HFKApplication.applicationInstance.tinyDB.readString(
             AppConstants.KEY_PREFS_FCM_TOKEN,

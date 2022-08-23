@@ -10,6 +10,6 @@ data class MarketViewResponseModel(
     val success: Boolean = false,
     @field:SerializedName("message")
     val message: String,
-    @field:SerializedName("value")
-    val marketValue: String
+    @field:SerializedName("market_value_list")
+    val marketViewItemList: ArrayList<MarketViewItemModel>
 ) : Parcelable

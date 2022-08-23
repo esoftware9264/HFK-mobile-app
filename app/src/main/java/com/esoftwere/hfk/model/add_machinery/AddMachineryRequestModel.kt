@@ -46,6 +46,8 @@ data class AddMachineryRequestModel(
     val sellerVillage: String,
     @field:SerializedName("pin_code")
     val sellerPinCode: String,
+    @field:SerializedName("landmark")
+    val sellerLandmark: String,
     @field:SerializedName("phone_number")
     val sellerPhnNo: String
 ) : Parcelable

@@ -10,6 +10,8 @@ data class CountryModel(
     val countryId: String,
     @field:SerializedName("name")
     val countryName: String,
+    @field:SerializedName("country_code")
+    val countryCode: String,
     @field:SerializedName("active_flag")
     val activeFlag: String
 ) : Parcelable

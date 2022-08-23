@@ -13,5 +13,7 @@ data class ProductDetailsResponseModel(
     @field:SerializedName("product_list")
     val productDetailsModel: ProductDetailsModel,
     @field:SerializedName("user_details")
-    val userDetailsModel: UserDetailsModel
+    val userDetailsModel: UserDetailsModel,
+    @field:SerializedName("related_product_list")
+    val relatedProductList: ArrayList<RelatedProductItemModel>
 ) : Parcelable

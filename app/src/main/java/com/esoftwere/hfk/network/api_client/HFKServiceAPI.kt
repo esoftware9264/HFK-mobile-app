@@ -10,6 +10,8 @@ import com.esoftwere.hfk.model.category_unit.CategoryUnitMapRequestModel
 import com.esoftwere.hfk.model.category_unit.CategoryUnitMapResponseModel
 import com.esoftwere.hfk.model.chat.ChatRequestModel
 import com.esoftwere.hfk.model.chat.ChatResponseModel
+import com.esoftwere.hfk.model.chat_user_list.ChatUserListRequestModel
+import com.esoftwere.hfk.model.chat_user_list.ChatUserListResponseModel
 import com.esoftwere.hfk.model.country.CountryListResponseModel
 import com.esoftwere.hfk.model.district.DistrictListRequestModel
 import com.esoftwere.hfk.model.district.DistrictListResponseModel
@@ -17,6 +19,8 @@ import com.esoftwere.hfk.model.fcm_token.UpdateFCMTokenRequestModel
 import com.esoftwere.hfk.model.fcm_token.UpdateFCMTokenResponseModel
 import com.esoftwere.hfk.model.file_upload.FileUploadResponseModel
 import com.esoftwere.hfk.model.file_upload.VideoUploadResponseModel
+import com.esoftwere.hfk.model.forgot_password.ForgotPasswordRequestModel
+import com.esoftwere.hfk.model.forgot_password.ForgotPasswordResponseModel
 import com.esoftwere.hfk.model.home.DashboardResponseModel
 import com.esoftwere.hfk.model.login.LoginRequestModel
 import com.esoftwere.hfk.model.login.LoginResponseModel
@@ -128,7 +132,10 @@ interface HFKServiceAPI {
      * Category List API
      */
     @GET(AppConstants.REQUEST_TYPE_CATEGORY_LIST)
-    fun categoryListAPI(@Query("main_category_id") mainCatId: String = "", @Query("is_machinery") isMachinery: Int = 0): Call<CategoryListResponseModel>
+    fun categoryListAPI(
+        @Query("main_category_id") mainCatId: String = "",
+        @Query("is_machinery") isMachinery: Int = 0
+    ): Call<CategoryListResponseModel>
 
     /**
      * Category List By Main Category ID API
@@ -269,12 +276,28 @@ interface HFKServiceAPI {
     /**
      * Market View API
      */
-    @POST(AppConstants.REQUEST_TYPE_MARKET_VIEW)
-    fun getMarketViewAPI(@Body marketViewRequestModel: MarketViewRequestModel): Call<MarketViewResponseModel>
+    @GET(AppConstants.REQUEST_TYPE_MARKET_VIEW)
+    fun getMarketViewAPI(
+        @Query("main_category_id") mainCategoryId: String? = null,
+        @Query("category_id") categoryId: String? = null,
+        @Query("state_id") stateId: String? = null
+    ): Call<MarketViewResponseModel>
 
     /**
      * Send Push Notification API
      */
     @POST(AppConstants.REQUEST_TYPE_SEND_PUSH_NOTIFICATION)
     fun sendPushNotificationAPI(@Body sendPushNotificationRequestModel: SendPushNotificationRequestModel): Call<SendPushNotificationResponseModel>
+
+    /**
+     * Chat User List Bu User ID API
+     */
+    @POST(AppConstants.REQUEST_TYPE_CHAT_USER_LIST_BY_ID)
+    suspend fun chatUserListByIdAPI(@Body chatUserListRequestModel: ChatUserListRequestModel): Response<ChatUserListResponseModel>
+
+    /**
+     * Chat User List Bu User ID API
+     */
+    @POST(AppConstants.REQUEST_TYPE_FORGOT_PASSWORD_API)
+    suspend fun forgotPasswordAPI(@Body forgotPasswordRequestModel: ForgotPasswordRequestModel): Response<ForgotPasswordResponseModel>
 }

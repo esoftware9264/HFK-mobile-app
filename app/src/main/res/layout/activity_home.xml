@@ -46,6 +46,8 @@
                 app:labelVisibilityMode="labeled"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:itemTextAppearanceActive="@style/BottomNavigationViewText.Active"
+                app:itemTextAppearanceInactive="@style/BottomNavigationViewText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:menu="@menu/menu_bottom_nav_home" />
         </androidx.constraintlayout.widget.ConstraintLayout>

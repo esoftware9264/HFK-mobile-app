@@ -10,6 +10,8 @@ data class ProductDetailsRequestModel(
     val productId: String,
     @field:SerializedName("type")
     val productType: String,
+    @field:SerializedName("state_id")
+    val userStateId: String,
     @field:SerializedName("user_mst_id")
     val userMstId: String
 ) : Parcelable
