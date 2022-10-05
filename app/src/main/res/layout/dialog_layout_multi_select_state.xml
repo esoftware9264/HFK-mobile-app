@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_black_percent_45"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:background="@drawable/drawable_solid_white_smoke_curved_corner">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_multiSelectCatToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:background="@drawable/drawable_top_curved_solid_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_selectCategoryLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/select_state"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_17ssp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_selectAllState"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:src="@drawable/ic_select_all"
+                    android:tint="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_stateList"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_320sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_multiSelectCatToolbar"/>
+
+            <View
+                android:id="@+id/view_dividerAccessHandler"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:visibility="invisible"
+                android:background="@color/light_slate_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_stateList" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/apply"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_cancel"
+                app:layout_constraintTop_toBottomOf="@+id/view_dividerAccessHandler"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="@color/payne_grey"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_dividerAccessHandler"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

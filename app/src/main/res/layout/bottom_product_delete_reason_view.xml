@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_smoke"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_specifyDeleteReasonLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please specify the reason for delete the product"
+            android:textColor="@color/black"
+            android:fontFamily="@font/lato_bold"
+            android:textSize="@dimen/_19ssp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_productDeleteReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:orientation="vertical"
+            android:scrollbars="none" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_verify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:background="@drawable/drawable_curved_solid_primary"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp" />
+    </LinearLayout>
+</layout>

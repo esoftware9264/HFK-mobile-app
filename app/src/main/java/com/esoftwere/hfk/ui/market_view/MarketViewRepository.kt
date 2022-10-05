@@ -31,7 +31,6 @@ class MarketViewRepository(val mContext: Context) {
 
     init {
         hfkServiceAPI = HFKAPIClient.hfkServiceAPI
-
         mMarketViewMutableLiveData = MutableLiveData()
     }
 

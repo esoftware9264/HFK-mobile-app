@@ -38,9 +38,13 @@ class HFKMessagingService : FirebaseMessagingService() {
     }
 
     private fun showNotification(title: String?, body: String?) {
-        val intent = Intent(this, HomeActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val notificationIntent = Intent(this, HomeActivity::class.java)
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        val pendingIntent =  if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE)
+        } else {
+             PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_ONE_SHOT)
+        }
 
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this)

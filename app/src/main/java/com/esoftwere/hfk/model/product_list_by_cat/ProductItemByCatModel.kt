@@ -30,6 +30,10 @@ data class ProductItemByCatModel(
     val productQuality: String,
     @field:SerializedName("product_location")
     val productLocation: String,
+    @field:SerializedName("product_view")
+    val productViewCount: Int,
+    @field:SerializedName("distance")
+    val productDistance: String,
     @field:SerializedName("average_rating")
     val itemRating: String?,
     @field:SerializedName("category_id")

@@ -6,10 +6,4 @@
     <stroke
         android:width="@dimen/_2sdp"
         android:color="#ebebeb" />
-
-    <padding
-        android:bottom="@dimen/_8sdp"
-        android:left="@dimen/_8sdp"
-        android:right="@dimen/_8sdp"
-        android:top="@dimen/_8sdp" />
 </shape>

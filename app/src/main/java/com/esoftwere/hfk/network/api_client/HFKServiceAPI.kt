@@ -15,6 +15,10 @@ import com.esoftwere.hfk.model.chat_user_list.ChatUserListResponseModel
 import com.esoftwere.hfk.model.country.CountryListResponseModel
 import com.esoftwere.hfk.model.district.DistrictListRequestModel
 import com.esoftwere.hfk.model.district.DistrictListResponseModel
+import com.esoftwere.hfk.model.edit_machinery.EditMachineryRequestModel
+import com.esoftwere.hfk.model.edit_machinery.EditMachineryResponseModel
+import com.esoftwere.hfk.model.edit_product.EditProductRequestModel
+import com.esoftwere.hfk.model.edit_product.EditProductResponseModel
 import com.esoftwere.hfk.model.fcm_token.UpdateFCMTokenRequestModel
 import com.esoftwere.hfk.model.fcm_token.UpdateFCMTokenResponseModel
 import com.esoftwere.hfk.model.file_upload.FileUploadResponseModel
@@ -29,12 +33,12 @@ import com.esoftwere.hfk.model.market_view.MarketViewRequestModel
 import com.esoftwere.hfk.model.market_view.MarketViewResponseModel
 import com.esoftwere.hfk.model.notification.NotificationListRequestModel
 import com.esoftwere.hfk.model.notification.NotificationListResponseModel
+import com.esoftwere.hfk.model.notification_preference.*
 import com.esoftwere.hfk.model.product_details.ProductDetailsRequestModel
 import com.esoftwere.hfk.model.product_details.ProductDetailsResponseModel
 import com.esoftwere.hfk.model.product_list_by_cat.ProductListByCatRequestModel
 import com.esoftwere.hfk.model.product_list_by_cat.ProductListByCatResponseModel
-import com.esoftwere.hfk.model.product_list_by_user.ProductListByUserRequestModel
-import com.esoftwere.hfk.model.product_list_by_user.ProductListByUserResponseModel
+import com.esoftwere.hfk.model.product_list_by_user.*
 import com.esoftwere.hfk.model.product_rating.ProductRatingRequestModel
 import com.esoftwere.hfk.model.product_rating.ProductRatingResponseModel
 import com.esoftwere.hfk.model.product_review.ProductReviewRequestModel
@@ -72,6 +76,12 @@ interface HFKServiceAPI {
      */
     @GET(AppConstants.REQUEST_TYPE_STATE_LIST)
     fun stateListAPI(@Query("country_id") countryId: String = "1"): Call<StateListResponseModel>
+
+    /**
+     * State List Notification API
+     */
+    @GET(AppConstants.REQUEST_TYPE_STATE_LIST)
+    suspend fun stateListNotificationAPI(@Query("country_id") countryId: String = "1"): Response<StateListNotificationResponseModel>
 
     /**
      * District List By State Id API
@@ -136,6 +146,15 @@ interface HFKServiceAPI {
         @Query("main_category_id") mainCatId: String = "",
         @Query("is_machinery") isMachinery: Int = 0
     ): Call<CategoryListResponseModel>
+
+    /**
+     * Category List API
+     */
+    @GET(AppConstants.REQUEST_TYPE_CATEGORY_LIST)
+    suspend fun categoryListNotificationAPI(
+        @Query("main_category_id") mainCatId: String = "",
+        @Query("is_machinery") isMachinery: Int = 0
+    ): Response<CategoryListNotificationResponseModel>
 
     /**
      * Category List By Main Category ID API
@@ -300,4 +319,46 @@ interface HFKServiceAPI {
      */
     @POST(AppConstants.REQUEST_TYPE_FORGOT_PASSWORD_API)
     suspend fun forgotPasswordAPI(@Body forgotPasswordRequestModel: ForgotPasswordRequestModel): Response<ForgotPasswordResponseModel>
+
+    /**
+     * Product Disable By Id API
+     */
+    @POST(AppConstants.REQUEST_TYPE_PRODUCT_DISABLE_BY_ID)
+    suspend fun productDisableByIdAPI(@Body productDisableRequestModel: ProductDisableRequestModel): Response<ProductDisableResponseModel>
+
+    /**
+     * Product Remove By Id API
+     */
+    @POST(AppConstants.REQUEST_TYPE_PRODUCT_REMOVE_BY_ID)
+    suspend fun productRemoveByIdAPI(@Body productDeleteRequestModel: ProductDeleteRequestModel): Response<ProductDeleteResponseModel>
+
+    /**
+     * Product Update By Id API
+     */
+    @POST(AppConstants.REQUEST_TYPE_PRODUCT_UPDATE_BY_ID)
+    suspend fun editProductByIdAPI(@Body editProductRequestModel: EditProductRequestModel): Response<EditProductResponseModel>
+
+    /**
+     * Product Update By Id API
+     */
+    @POST(AppConstants.REQUEST_TYPE_MACHINERY_UPDATE_BY_ID)
+    suspend fun editMachineryByIdAPI(@Body editMachineryRequestModel: EditMachineryRequestModel): Response<EditMachineryResponseModel>
+
+    /**
+     * Notification Active By Category & State API
+     */
+    @POST(AppConstants.REQUEST_TYPE_NOTIFICATION_ACTIVE_BY_CAT_STATE)
+    suspend fun notificationActiveByCatStateAPI(@Body notificationActiveByCatAndStateRequestModel: NotificationActiveByCatAndStateRequestModel): Response<NotificationActiveByCatAndStateResponseModel>
+
+    /**
+     * Notification Active Category By User Id API
+     */
+    @POST(AppConstants.REQUEST_TYPE_NOTIFICATION_ACTIVE_CAT_LIST_BY_USER_ID_API)
+    suspend fun notificationActiveCatByUserAPI(@Body notificationActiveCatListByUserRequestModel: NotificationActiveCatListByUserRequestModel): Response<NotificationActiveCatListByUserResponseModel>
+
+    /**
+     * Notification Inactive Category By Id API
+     */
+    @POST(AppConstants.REQUEST_TYPE_NOTIFICATION_INACTIVE_CAT_BY_ID_API)
+    suspend fun notificationInactiveCatByIdAPI(@Body notificationInactiveCatRequestModel: NotificationInactiveCatRequestModel): Response<NotificationInactiveCatResponseModel>
 }

@@ -2,12 +2,18 @@ package com.esoftwere.hfk.utils
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -107,6 +113,14 @@ fun View.toggleVisibility() {
 }
 
 /**
+ * Enable/Disable all view elements in single go
+ */
+fun View.setAllEnabled(enabled: Boolean) {
+    isEnabled = enabled
+    if (this is ViewGroup) children.forEach { child -> child.setAllEnabled(enabled) }
+}
+
+/**
  * Add INR Symbol To Price Data
  */
 fun String?.addINRSymbolToPrice(): String {
@@ -125,10 +139,42 @@ fun String?.addINRSymbolToPriceWithoutSuffix(): String {
     return "-"
 }
 
+/**
+ * append command after every 3 chars
+ */
 fun String.formatDecimalSeparator(): String {
     return this
         .reversed()
         .chunked(3)
         .joinToString(",")
         .reversed()
+}
+
+/**
+ * Remove comma for last digit
+ */
+fun String.removeLstCommaFromString(): String {
+    if (this.endsWith(",", true)) {
+        return this.substring(0, this.length - 1)
+    }
+
+    return this
+}
+
+/**
+ * Disable AppCompatButton
+ */
+fun AppCompatButton.disable() {
+    setBackgroundResource(R.drawable.drawable_curved_solid_gray)
+    isClickable = false
+    isEnabled = false
+}
+
+/**
+ * Enable AppCompatButton
+ */
+fun AppCompatButton.enable() {
+    setBackgroundResource(R.drawable.drawable_curved_solid_primary)
+    isClickable = true
+    isEnabled = true
 }

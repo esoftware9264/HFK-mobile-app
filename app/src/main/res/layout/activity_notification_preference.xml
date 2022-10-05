@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.notification_preference.NotificationPreferenceActivity">
+
+        <include
+            android:id="@+id/toolbar_common"
+            layout="@layout/toolbar_common"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_notificationPermitController"
+            style="@style/MyCustomTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:background="@color/light_moss_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_common"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/primary_dark"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="@dimen/_4sdp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/accent" />
+
+        <com.esoftwere.hfk.utils.NonSwipeableViewPager
+            android:id="@+id/vp_notificationPreferenceHolder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_notificationPermitController" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

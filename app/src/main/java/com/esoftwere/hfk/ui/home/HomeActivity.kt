@@ -29,6 +29,7 @@ import com.esoftwere.hfk.ui.chat_user_list.ChatUserListActivity
 import com.esoftwere.hfk.ui.location_filter.LocationFilterActivity
 import com.esoftwere.hfk.ui.market_view.MarketViewActivity
 import com.esoftwere.hfk.ui.my_profile.MyProfileActivity
+import com.esoftwere.hfk.ui.notification_preference.NotificationPreferenceActivity
 import com.esoftwere.hfk.ui.product_list_by_user.ProductListByUserActivity
 import com.esoftwere.hfk.ui.search.ProductSearchActivity
 import com.esoftwere.hfk.ui.web_view.WebViewActivity
@@ -145,11 +146,17 @@ class HomeActivity : BaseActivity() {
                 R.id.navigation_item_notification -> {
                     moveToNotificationListActivity()
                 }
+                R.id.navigation_item_notification_preference -> {
+                    moveToNotificationPreferenceActivity()
+                }
                 R.id.navigation_item_tc-> {
                     moveToWebViewActivity(getString(R.string.terms_amp_conditions), AppConstants.TERMS_CONDITION_URL)
                 }
                 R.id.navigation_item_privacy_policy -> {
                     moveToWebViewActivity(getString(R.string.privacy_policy), AppConstants.PRIVACY_POLICY_URL)
+                }
+                R.id.navigation_item_user_policy -> {
+                    moveToWebViewActivity(getString(R.string.user_policy), AppConstants.USER_POLICY_URL)
                 }
                 R.id.navigation_item_share_apk -> {
                     moveToPlayStoreIntent()
@@ -300,6 +307,12 @@ class HomeActivity : BaseActivity() {
 
     private fun moveToNotificationListActivity() {
         val intent = Intent(this, NotificationListActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
+    }
+
+    private fun moveToNotificationPreferenceActivity() {
+        val intent = Intent(this, NotificationPreferenceActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
     }

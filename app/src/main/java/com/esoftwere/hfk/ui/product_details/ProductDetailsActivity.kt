@@ -354,9 +354,9 @@ class ProductDetailsActivity : AppCompatActivity() {
         mProductDetailsModel?.let { productDetails ->
             val productName = ValidationHelper.optionalBlankText(productDetails.productName)
             val productPrice = ValidationHelper.optionalBlankText(productDetails.productPrice)
-            val productPriceUnit = ValidationHelper.optionalBlankText(productDetails.priceUnitId)
+            val productPriceUnit = ValidationHelper.optionalBlankText(productDetails.priceUnitValue)
             val productQuantity = ValidationHelper.optionalBlankText(productDetails.productQuantity)
-            val productQuantityUnitId = ValidationHelper.optionalBlankText(productDetails.productQuantityUnitId)
+            val productQuantityUnitId = ValidationHelper.optionalBlankText(productDetails.productQuantityUnitValue)
             val productQuality = ValidationHelper.optionalBlankText(productDetails.productQuality)
             val productDescription =
                 ValidationHelper.optionalBlankText(productDetails.productDescription)

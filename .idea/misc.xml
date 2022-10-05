@@ -7,15 +7,25 @@
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/bottom_navigation_home_foreground.xml" value="0.12222222222222222" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/bottom_sheet_rounded_dialog.xml" value="0.14629629629629629" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_black_curved_corner.xml" value="0.1" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_black_curved_corner_solid_white.xml" value="0.1325" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_circle_smoke.xml" value="0.17864583333333334" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_curved_solid_gray.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_curved_solid_primary.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_curved_solid_primary_rating.xml" value="0.10277777777777777" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_curved_stroke_primary.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_grey_curved_corner.xml" value="0.1" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_grey_curved_corner_home_product.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_layer_input_field.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_master_category_bg.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_master_category_fg.xml" value="0.1" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_notification_pref_cat_active.xml" value="0.1325" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_notification_pref_cat_inactive.xml" value="0.1325" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_product_republish.xml" value="0.1" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_product_status_active.xml" value="0.1" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_product_status_others.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_red_curved_corner.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_solid_white_smoke_curved_corner.xml" value="0.14074074074074075" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/drawable_top_curved_solid_primary.xml" value="0.1325" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/ic_back_arrow.xml" value="0.11666666666666667" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/ic_bottom_wallet.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/drawable/ic_ham_burger_menu.xml" value="0.1" />
@@ -26,6 +36,8 @@
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_category_list.xml" value="0.15" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_chat.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_chat_user_list.xml" value="0.15833333333333333" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_edit_machinery.xml" value="0.22" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_edit_product.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_forgot_password.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_location_filter.xml" value="0.25" />
@@ -33,6 +45,7 @@
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_market_view.xml" value="0.25" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_my_profile.xml" value="0.2" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_notification_list.xml" value="0.15833333333333333" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_notification_preference.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_product_details.xml" value="0.25" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_product_list_by_cat.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_product_list_by_user.xml" value="0.15833333333333333" />
@@ -45,21 +58,28 @@
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/activity_wish_list.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_category_all.xml" value="0.125" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_chat_user.xml" value="0.15833333333333333" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_delete_product_reason.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_home_category.xml" value="0.15" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_home_product.xml" value="0.33" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_market_view.xml" value="0.25" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_master_category.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_multi_image.xml" value="0.25" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_multi_select_category.xml" value="0.25" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_multi_select_state.xml" value="0.2" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_notification.xml" value="0.17785234899328858" />
-        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_product_by_cat.xml" value="0.15833333333333333" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_notification_deactivate_category.xml" value="0.5" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_product_by_cat.xml" value="0.25" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_product_details_banner.xml" value="0.1" />
-        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_product_list_by_user.xml" value="0.2" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_product_list_by_user.xml" value="0.33" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_product_review.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_product_search.xml" value="0.13920454545454544" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_related_product.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/adapter_item_wish_list.xml" value="0.1" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/bottom_product_delete_reason_view.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/bottom_product_rating_view.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/bottom_video_upload_capture_view.xml" value="0.25" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/dialog_layout_multi_select_category.xml" value="0.25" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/dialog_layout_multi_select_state.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/dialog_layout_video.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/fragment_add_machinery_first_step.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/fragment_add_machinery_second_step.xml" value="0.15833333333333333" />
@@ -68,6 +88,8 @@
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/fragment_add_product_second_step.xml" value="0.18" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/fragment_add_product_third_step.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/fragment_notification_preference_activate.xml" value="0.25" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/fragment_notification_preference_deactivate.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/layout_no_wishlist_found.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/layout_product_list_home.xml" value="0.1" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/nav_header.xml" value="0.1" />
@@ -79,11 +101,11 @@
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/view_custom_dropdown_menu_category.xml" value="0.24259259259259258" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/layout/view_custom_pop_up_window.xml" value="0.15833333333333333" />
         <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/menu/menu_bottom_nav_home.xml" value="0.18" />
-        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/menu/nav_menu.xml" value="0.1" />
+        <entry key="..\:/Workspace/AndroidApplication/ClientProjects/HFKApplication/app/src/main/res/menu/nav_menu.xml" value="0.25" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

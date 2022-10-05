@@ -13,8 +13,9 @@ object AppConstants {
     /** Remote Server URL Details */
     const val BASE_URL = "https://myhfk.com/app/"
     const val BASE_URL_IMAGE = "https://myhfk.com/assets/images/category_images/"
-    const val PRIVACY_POLICY_URL = "https://myhfk.com/privacy_policy.php"
     const val TERMS_CONDITION_URL = "https://myhfk.com/terms_conditions.php"
+    const val PRIVACY_POLICY_URL = "https://myhfk.com/privacy_policy.php"
+    const val USER_POLICY_URL = "https://myhfk.com/user_conditions.php"
 
     /** Content Header Type  */
     const val HEADER_CONTENT_TYPE_JSON = "Content-Type: application/json"
@@ -96,4 +97,11 @@ object AppConstants {
     const val REQUEST_TYPE_SEND_PUSH_NOTIFICATION = "customer/sendPushNotification"
     const val REQUEST_TYPE_CHAT_USER_LIST_BY_ID = "customer/getChatUsersById"
     const val REQUEST_TYPE_FORGOT_PASSWORD_API = "customer/forgotPassword"
+    const val REQUEST_TYPE_PRODUCT_DISABLE_BY_ID = "customer/productDisableById"
+    const val REQUEST_TYPE_PRODUCT_REMOVE_BY_ID = "customer/productRemoveById"
+    const val REQUEST_TYPE_PRODUCT_UPDATE_BY_ID = "customer/productUpdateById"
+    const val REQUEST_TYPE_MACHINERY_UPDATE_BY_ID = "customer/machineryUpdateById"
+    const val REQUEST_TYPE_NOTIFICATION_ACTIVE_BY_CAT_STATE = "customer/notificationActiveByCatAndState"
+    const val REQUEST_TYPE_NOTIFICATION_ACTIVE_CAT_LIST_BY_USER_ID_API = "customer/activeCategoryListByUserId"
+    const val REQUEST_TYPE_NOTIFICATION_INACTIVE_CAT_BY_ID_API = "customer/deactiveCategoryListById"
 }

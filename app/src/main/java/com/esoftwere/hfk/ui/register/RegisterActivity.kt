@@ -693,7 +693,7 @@ class RegisterActivity : AppCompatActivity() {
             RegisterRequestModel(
                 firstName = mFirstName,
                 lastName = mLastName,
-                mobile = "$mMobileDialCode-$mMobileNo",
+                mobile = mMobileNo,
                 email = mEmail,
                 password = mPassword,
                 userType = mSelectedRadioButton,

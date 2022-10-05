@@ -38,6 +38,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         initToolbar()
         initVariable()
         initListeners()
+        initViewModel()
     }
 
     override fun onBackPressed() {

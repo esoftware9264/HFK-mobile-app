@@ -100,47 +100,46 @@ class AddProductRepository(val mContext: Context) {
 
         hfkServiceAPI?.categoryListAPI(
             mainCatId = mainCategoryId
-        )
-            ?.enqueue(object : Callback<CategoryListResponseModel> {
-                override fun onResponse(
-                    call: Call<CategoryListResponseModel>,
-                    response: Response<CategoryListResponseModel>
-                ) {
-                    mCategoryListMutableLiveData?.value = ResultWrapper.loading(false)
+        )?.enqueue(object : Callback<CategoryListResponseModel> {
+            override fun onResponse(
+                call: Call<CategoryListResponseModel>,
+                response: Response<CategoryListResponseModel>
+            ) {
+                mCategoryListMutableLiveData?.value = ResultWrapper.loading(false)
 
-                    if (response.isSuccessful) {
-                        val categoryListResponseModel = response.body()
-                        categoryListResponseModel?.let { categoryListResponse ->
-                            if (categoryListResponse.success) {
-                                AndroidUtility.printModelDataWithGSON(TAG, categoryListResponse)
+                if (response.isSuccessful) {
+                    val categoryListResponseModel = response.body()
+                    categoryListResponseModel?.let { categoryListResponse ->
+                        if (categoryListResponse.success) {
+                            AndroidUtility.printModelDataWithGSON(TAG, categoryListResponse)
 
-                                mCategoryListMutableLiveData?.postValue(
-                                    ResultWrapper.success(
-                                        categoryListResponse
-                                    )
+                            mCategoryListMutableLiveData?.postValue(
+                                ResultWrapper.success(
+                                    categoryListResponse
                                 )
-                            } else {
-                                mCategoryListMutableLiveData?.postValue(
-                                    ResultWrapper.failure(
-                                        categoryListResponse.message
-                                    )
+                            )
+                        } else {
+                            mCategoryListMutableLiveData?.postValue(
+                                ResultWrapper.failure(
+                                    categoryListResponse.message
                                 )
-                            }
-                        }
-                    } else {
-                        response.errorBody()?.string()?.let {
-                            Log.d(TAG, it)
-                            mCategoryListMutableLiveData?.postValue(ResultWrapper.failure(it))
+                            )
                         }
                     }
+                } else {
+                    response.errorBody()?.string()?.let {
+                        Log.d(TAG, it)
+                        mCategoryListMutableLiveData?.postValue(ResultWrapper.failure(it))
+                    }
                 }
+            }
 
-                override fun onFailure(call: Call<CategoryListResponseModel>, t: Throwable) {
-                    mCategoryListMutableLiveData?.value = ResultWrapper.loading(false)
-                    mCategoryListMutableLiveData?.postValue(ResultWrapper.failure(t.message))
-                    t.message?.let { Log.d(TAG, it) }
-                }
-            })
+            override fun onFailure(call: Call<CategoryListResponseModel>, t: Throwable) {
+                mCategoryListMutableLiveData?.value = ResultWrapper.loading(false)
+                mCategoryListMutableLiveData?.postValue(ResultWrapper.failure(t.message))
+                t.message?.let { Log.d(TAG, it) }
+            }
+        })
     }
 
     fun callCategoryUnitMapAPI(categoryUnitMapRequestModel: CategoryUnitMapRequestModel) {

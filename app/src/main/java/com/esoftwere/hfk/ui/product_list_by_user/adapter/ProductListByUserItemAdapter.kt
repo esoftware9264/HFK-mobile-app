@@ -1,6 +1,7 @@
 package com.esoftwere.hfk.ui.product_list_by_user.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,17 +20,17 @@ import com.esoftwere.hfk.utils.loadImageFromUrl
 class ProductListByUserItemAdapter(
     private val mContext: Context,
     private val mProductListByUserItemClickListener: ProductListByUserItemClickListener
-) : RecyclerView.Adapter<ProductListByUserItemAdapter.WishListViewHolder>() {
+) : RecyclerView.Adapter<ProductListByUserItemAdapter.ProductListByUserViewHolder>() {
     private var mProductListByUserItemList: ArrayList<ProductListByUserModel> = arrayListOf()
 
-    fun setProductListByUSerItemList(productListByUserItemList: ArrayList<ProductListByUserModel>) {
+    fun setProductListByUserItemList(productListByUserItemList: ArrayList<ProductListByUserModel>) {
         this.mProductListByUserItemList.clear()
-        this.mProductListByUserItemList = productListByUserItemList
+        this.mProductListByUserItemList.addAll(productListByUserItemList)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WishListViewHolder {
-        return WishListViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductListByUserViewHolder {
+        return ProductListByUserViewHolder(
             AdapterItemProductListByUserBinding.inflate(
                 LayoutInflater.from(mContext),
                 parent,
@@ -42,14 +43,14 @@ class ProductListByUserItemAdapter(
         return mProductListByUserItemList?.size ?: 0
     }
 
-    override fun onBindViewHolder(viewHolder: WishListViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ProductListByUserViewHolder, position: Int) {
         val productListByUserModel = mProductListByUserItemList?.get(position)
         productListByUserModel?.let { productListItemModel ->
             viewHolder?.onBind(productListItemModel)
         }
     }
 
-    inner class WishListViewHolder(private val binding: AdapterItemProductListByUserBinding) :
+    inner class ProductListByUserViewHolder(private val binding: AdapterItemProductListByUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(productListByUserModel: ProductListByUserModel) {
             val itemImageUrl: String = ValidationHelper.optionalBlankText(productListByUserModel.productImageUrl)
@@ -84,8 +85,87 @@ class ProductListByUserItemAdapter(
             binding.tvProductCategory.text = ValidationHelper.optionalBlankText(productListByUserModel.productType)
             binding.tvProductQuantity.text = ValidationHelper.optionalBlankText(productListByUserModel.productQuantity)
 
+            when {
+                productListByUserModel.activeFlag == 1 -> {
+                    binding.tvProductStatus.setBackgroundResource(R.drawable.drawable_product_status_active)
+                    binding.tvProductStatus.setTextColor(Color.parseColor("#000000"))
+                    binding.tvProductStatus.text = "Active"
+
+                    binding.ivProductDisableItem.visibility = View.VISIBLE
+                    binding.grpRepublishProduct.visibility = View.GONE
+                    binding.viewDisableContentListItem.visibility = View.GONE
+                    binding.clProductListRoot.apply {
+                        isClickable = true
+                        isEnabled = true
+                    }
+                }
+                productListByUserModel.blockFlag == 1 -> {
+                    binding.tvProductStatus.setBackgroundResource(R.drawable.drawable_product_status_others)
+                    binding.tvProductStatus.setTextColor(Color.parseColor("#ffffff"))
+                    binding.tvProductStatus.text = "Blocked"
+
+                    binding.ivProductDisableItem.visibility = View.GONE
+                    binding.grpRepublishProduct.visibility = View.GONE
+                    binding.viewDisableContentListItem.visibility = View.GONE
+                    binding.clProductListRoot.apply {
+                        isClickable = true
+                        isEnabled = true
+                    }
+                }
+                productListByUserModel.disabledFlag == 1 -> {
+                    binding.tvProductStatus.setBackgroundResource(R.drawable.drawable_product_status_others)
+                    binding.tvProductStatus.setTextColor(Color.parseColor("#ffffff"))
+                    binding.tvProductStatus.text = "Disable"
+
+                    binding.ivProductDisableItem.visibility = View.GONE
+                    binding.grpRepublishProduct.visibility = View.VISIBLE
+                    binding.viewDisableContentListItem.visibility = View.VISIBLE
+                    binding.clProductListRoot.apply {
+                        isClickable = false
+                        isEnabled = false
+                    }
+                }
+                productListByUserModel.pendingFlag == 1 -> {
+                    binding.tvProductStatus.setBackgroundResource(R.drawable.drawable_product_status_others)
+                    binding.tvProductStatus.setTextColor(Color.parseColor("#ffffff"))
+                    binding.tvProductStatus.text = "Pending"
+
+                    binding.ivProductDisableItem.visibility = View.GONE
+                    binding.grpRepublishProduct.visibility = View.GONE
+                    binding.viewDisableContentListItem.visibility = View.GONE
+                    binding.clProductListRoot.apply {
+                        isClickable = true
+                        isEnabled = true
+                    }
+                }
+                productListByUserModel.rejectFlag == 1 -> {
+                    binding.tvProductStatus.setBackgroundResource(R.drawable.drawable_product_status_others)
+                    binding.tvProductStatus.setTextColor(Color.parseColor("#ffffff"))
+                    binding.tvProductStatus.text = "Rejected"
+
+                    binding.ivProductDisableItem.visibility = View.GONE
+                    binding.grpRepublishProduct.visibility = View.GONE
+                    binding.viewDisableContentListItem.visibility = View.GONE
+                    binding.clProductListRoot.apply {
+                        isClickable = true
+                        isEnabled = true
+                    }
+                }
+            }
             binding.clProductListRoot.setOnClickListener {
                 mProductListByUserItemClickListener?.onProductListByUserItemClick(productListByUserModel)
+            }
+            binding.ivProductDisableItem.setOnClickListener {
+                mProductListByUserItemClickListener?.onProductListByUserDisableItemClick(productListByUserModel)
+            }
+            binding.ivEditItem.setOnClickListener {
+                mProductListByUserItemClickListener?.onProductListByUserEditItemClick(productListByUserModel)
+            }
+            binding.ivDeleteItem.setOnClickListener {
+                mProductListByUserItemClickListener?.onProductListByUserDeleteItemClick(productListByUserModel)
+            }
+            binding.btnRepublish.setOnClickListener {
+                mProductListByUserItemClickListener?.onProductListByUserRepublishItemClick(productListByUserModel)
             }
         }
     }

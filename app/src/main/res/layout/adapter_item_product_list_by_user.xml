@@ -24,141 +24,233 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_productListRoot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_4sdp">
+                android:padding="@dimen/_4sdp"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/ll_productImageHolder"
-                    android:layout_width="@dimen/_95sdp"
-                    android:layout_height="@dimen/_120sdp"
-                    android:background="@drawable/drawable_grey_curved_corner"
-                    android:gravity="center"
-                    android:padding="@dimen/_10sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_productListRoot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_product"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:id="@+id/ll_productImageHolder"
+                        android:layout_width="@dimen/_95sdp"
+                        android:layout_height="@dimen/_120sdp"
+                        android:background="@drawable/drawable_grey_curved_corner"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_product"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_productName"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY" />
-                </LinearLayout>
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13ssp"
+                        android:textAlignment="viewStart"
+                        app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_productDisableItem"
+                        app:layout_constraintTop_toTopOf="@+id/ll_productImageHolder" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_productName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:fontFamily="@font/lato_bold"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15ssp"
-                    app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
-                    app:layout_constraintTop_toTopOf="@+id/ll_productImageHolder" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_productCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/lato_regular"
+                        android:text=""
+                        android:textColor="@color/payne_grey"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_productName" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_productCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_8sdp"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_productQuantityLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/lato_regular"
+                        android:text="Quantity: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_productCategory" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_productQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_productQuantityLabel"
+                        app:layout_constraintStart_toEndOf="@+id/tv_productQuantityLabel"
+                        app:layout_constraintTop_toTopOf="@+id/tv_productQuantityLabel" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_productStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_12sdp"
+                        android:paddingTop="@dimen/_4sdp"
+                        android:paddingBottom="@dimen/_4sdp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textSize="@dimen/_11ssp"
+                        android:includeFontPadding="false"
+                        app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_productQuantityLabel" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_productQuantityUnitId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_productQuantityLabel"
+                        app:layout_constraintStart_toEndOf="@+id/tv_productQuantity"
+                        app:layout_constraintTop_toTopOf="@+id/tv_productQuantityLabel" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_productDisableItem"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:src="@drawable/ic_product_disable"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_editItem"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_editItem"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:src="@drawable/ic_edit_pencil"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_deleteItem"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_deleteItem"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/ic_delete"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_productPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="\u20B9 450"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_productPriceUnitId" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_productPriceUnitId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13ssp"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:id="@+id/rb_itemRating"
+                        style="@android:style/Widget.Material.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_4sdp"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:progressTint="@color/primary"
+                        android:stepSize="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder" />
+
+                    <View
+                        android:id="@+id/view_disableContentListItem"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="@dimen/dp_0"
+                        android:background="@color/alpha_light_gray"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_dividerRepublish"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
                     android:layout_marginTop="@dimen/_4sdp"
-                    android:fontFamily="@font/lato_regular"
-                    android:text=""
-                    android:textColor="@color/payne_grey"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_productName" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_productQuantityLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:fontFamily="@font/lato_regular"
-                    android:text="Quantity: "
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15ssp"
-                    app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_productCategory" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_productQuantity"
-                    android:layout_width="14dp"
-                    android:layout_height="20dp"
+                    android:background="@color/cyan_gray"
                     android:layout_marginStart="@dimen/_4sdp"
-                    android:fontFamily="@font/lato_bold"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_productQuantityLabel"
-                    app:layout_constraintStart_toEndOf="@+id/tv_productQuantityLabel"
-                    app:layout_constraintTop_toTopOf="@+id/tv_productQuantityLabel" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_productQuantityUnitId"
-                    android:layout_width="14dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="@dimen/_4sdp"
-                    android:fontFamily="@font/lato_bold"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15ssp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_productQuantityLabel"
-                    app:layout_constraintStart_toEndOf="@+id/tv_productQuantity"
-                    app:layout_constraintTop_toTopOf="@+id/tv_productQuantityLabel" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_deleteItem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/drawable_circle_smoke"
-                    android:padding="@dimen/_10sdp"
-                    android:src="@drawable/ic_delete"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_productPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_4sdp"
-                    android:fontFamily="@font/lato_bold"
-                    android:text="\u20B9 450"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_productPriceUnitId" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_productListRoot"/>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_productPriceUnitId"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_republish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:padding="@dimen/_8sdp"
                     android:fontFamily="@font/lato_bold"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15ssp"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:text="Republish"
+                    android:background="@drawable/drawable_product_republish"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_dividerRepublish"/>
 
-                <androidx.appcompat.widget.AppCompatRatingBar
-                    android:id="@+id/rb_itemRating"
-                    style="@android:style/Widget.Material.RatingBar.Small"
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/grp_republishProduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginBottom="@dimen/_4sdp"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:progressTint="@color/primary"
-                    android:stepSize="1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/ll_productImageHolder" />
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="view_dividerRepublish, btn_republish"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

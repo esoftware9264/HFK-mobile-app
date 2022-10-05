@@ -3,7 +3,7 @@
     <color name="primary">#31B23B</color>
     <color name="primary_dark">#2A9132</color>
     <color name="primary_light">#93DD99</color>
-    <color name="accent">@color/primary</color>
+    <color name="accent">#31B23B</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
@@ -11,10 +11,12 @@
 
     <color name="midnight_express">#091E42</color>
     <color name="alice_blue">#F7FAFF</color>
+    <color name="alpha_light_gray">#ADD1D4D9</color>
     <color name="cyan_gray">#B3BAC5</color>
     <color name="light_slate_grey">#7A869A</color>
     <color name="carmine">#FF0040</color>
     <color name="kelly_green">#4CC552</color>
+    <color name="light_moss_green">#D2F3D5</color>
     <color name="white_smoke">#F5F5F5</color>
     <color name="dodger_blue">#1E90FF</color>
     <color name="orange">#f26d15</color>
@@ -24,6 +26,8 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="deep_teal">#033E3E</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 

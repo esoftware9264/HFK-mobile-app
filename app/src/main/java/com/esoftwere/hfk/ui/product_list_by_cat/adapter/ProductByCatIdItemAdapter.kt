@@ -91,6 +91,8 @@ class ProductByCatIdItemAdapter(
                 binding.rbItemRating.rating = itemRating.toFloat()
             }
             binding.tvProductName.text = ValidationHelper.optionalBlankText(productItemByCatModel.itemName)
+            binding.tvProductViewCount.text = "${productItemByCatModel.productViewCount}"
+            binding.tvProductDistance.text = "${productItemByCatModel.productDistance}"
 
             binding.clHomeProductItemRoot.setOnClickListener {
                 mOnProductByCatItemClickListener.onProductItemClicked(productItemByCatModel)

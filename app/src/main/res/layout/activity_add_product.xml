@@ -49,7 +49,7 @@
                 android:scrollbars="none">
 
                 <LinearLayout
-                    android:id="@+id/ll_addMachineryDetails"
+                    android:id="@+id/ll_addProductDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

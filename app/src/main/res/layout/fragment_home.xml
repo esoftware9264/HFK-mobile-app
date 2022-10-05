@@ -31,7 +31,7 @@
                     android:background="@color/white_smoke"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="@dimen/_8sdp">
+                    android:padding="@dimen/_4sdp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_homeCategoryLabel"

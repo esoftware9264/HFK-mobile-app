@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/ll_multiSelectCategoryRoot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:divider="@color/cyan_gray"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_4sdp"
+        android:background="@drawable/drawable_notification_pref_cat_inactive"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_8sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_category"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:srcCompat="@drawable/ic_placeholder"
+            app:strokeColor="@color/cyan_gray"
+            app:strokeWidth="@dimen/_1sdp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_categoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="start"
+            android:padding="@dimen/_4sdp"
+            android:singleLine="true"
+            android:textAlignment="viewStart"
+            android:text="@string/update"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp" />
+    </LinearLayout>
+</layout>

@@ -13,9 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_6sdp"
             android:background="@color/white_smoke"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/_4sdp"
-            android:paddingEnd="@dimen/_4sdp">
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

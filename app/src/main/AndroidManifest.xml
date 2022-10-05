@@ -29,9 +29,21 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:targetApi="m">
         <activity
-            android:name=".ui.chat_user_list.ChatUserListActivity"
+            android:name=".ui.notification_preference.NotificationPreferenceActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.edit_product.EditProductActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.edit_machinery.EditMachineryActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.chat_user_list.ChatUserListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.encrypt.AESEncryptDecryptActivity"
             android:exported="false" />
@@ -106,6 +118,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".ui.splash.SplashActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>

@@ -11,5 +11,7 @@ data class ProductListByUserResponseModel(
     @field:SerializedName("message")
     val message: String,
     @field:SerializedName("product_list")
-    val productListByUser: ArrayList<ProductListByUserModel>
+    val productListByUser: ArrayList<ProductListByUserModel>,
+    @field:SerializedName("product_remove_options")
+    val productDeleteReasonList: ArrayList<ProductItemDeleteReasonModel>
 ) : Parcelable

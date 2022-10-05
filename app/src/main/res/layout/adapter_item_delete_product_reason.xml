@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/llFilterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:minHeight="@dimen/_32sdp"
+        android:orientation="horizontal"
+        android:padding="@dimen/_4sdp">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/btnChecked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/checkbox_selector"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:clickable="false" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDeleteReason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                tools:text="" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

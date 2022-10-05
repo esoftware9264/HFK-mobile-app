@@ -12,18 +12,26 @@ data class ProductDetailsModel(
     val productName: String,
     @field:SerializedName("product_title")
     val productTitle: String,
+    @field:SerializedName("product_status")
+    val productStatus: String,
     @field:SerializedName("product_description")
     val productDescription: String,
     @field:SerializedName("price")
     val productPrice: String,
-    @field:SerializedName("price_unit_id")
+    @field:SerializedName("priceUnitId")
     val priceUnitId: String,
+    @field:SerializedName("price_unit_id")
+    val priceUnitValue: String,
+    @field:SerializedName("category_id")
+    val categoryId: String,
     @field:SerializedName("image")
     val productImageList: ArrayList<String>,
     @field:SerializedName("product_quantity")
     val productQuantity: String,
-    @field:SerializedName("quantity_unit_id")
+    @field:SerializedName("quantityUnitId")
     val productQuantityUnitId: String,
+    @field:SerializedName("quantity_unit_id")
+    val productQuantityUnitValue: String,
     @field:SerializedName("product_quality")
     val productQuality: String,
     @field:SerializedName("created_at")

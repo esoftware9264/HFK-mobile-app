@@ -25,5 +25,15 @@ data class ProductListByUserModel(
     @field:SerializedName("image")
     val productImageUrl: String,
     @field:SerializedName("average_rating")
-    val itemRating: String?
+    val itemRating: String?,
+    @field:SerializedName("pending_flag")
+    val pendingFlag: Int,
+    @field:SerializedName("reject_flag")
+    val rejectFlag: Int,
+    @field:SerializedName("active_flag")
+    val activeFlag: Int,
+    @field:SerializedName("disable_flag")
+    val disabledFlag: Int,
+    @field:SerializedName("block_flag")
+    val blockFlag: Int
 ) : Parcelable

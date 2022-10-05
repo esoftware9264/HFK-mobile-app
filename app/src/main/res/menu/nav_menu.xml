@@ -16,6 +16,12 @@
             android:icon="@drawable/ic_bell"/>
 
         <item
+            android:id="@+id/navigation_item_notification_preference"
+            android:checkable="true"
+            android:title="@string/label_notification_preference"
+            android:icon="@drawable/ic_notification_preference"/>
+
+        <item
             android:id="@+id/navigation_item_my_product_list"
             android:checkable="true"
             android:title="@string/my_product_list"
@@ -46,6 +52,12 @@
             android:checkable="true"
             android:title="@string/privacy_policy"
             android:icon="@drawable/ic_shield"/>
+
+        <item
+            android:id="@+id/navigation_item_user_policy"
+            android:checkable="true"
+            android:title="@string/user_policy"
+            android:icon="@drawable/ic_user_manual"/>
 
         <item
             android:id="@+id/navigation_item_share_apk"

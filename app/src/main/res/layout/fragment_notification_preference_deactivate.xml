@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_notificationPreDeactivateRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.notification_preference.NotificationPreferenceActivity">
+
+        <!--Category-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_categoriesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/categories"
+            android:textColor="@color/midnight_express"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swp_refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_update"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_categoriesLabel">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_activeCategoryList"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_addVisitorPermit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_noData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/no_result_found"
+            android:textColor="@color/light_slate_grey"
+            android:textSize="@dimen/_17ssp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_update"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:background="@drawable/drawable_curved_solid_primary"
+            android:fontFamily="@font/lato_bold"
+            android:singleLine="true"
+            android:text="@string/update"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_19ssp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/grp_categoryItemInactive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="tv_categoriesLabel, swp_refreshLayout, btn_update"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
